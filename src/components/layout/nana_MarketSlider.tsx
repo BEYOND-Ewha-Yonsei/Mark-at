@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Component } from 'react'
-import Slider from 'react-slick'
+// import Slider from 'react-slick'
 import { Box } from 'src/components/layout/Box'
 import { Stylesheet } from 'src/styles/types'
 

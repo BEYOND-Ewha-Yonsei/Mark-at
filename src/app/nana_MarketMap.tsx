@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { useNavigate } from 'react-router'
 import { Button } from 'src/components/buttons/Button'
 import SearchIcon from 'src/components/icons/search.svg'
@@ -6,9 +5,7 @@ import { Box } from 'src/components/layout/Box'
 import { mq, useIsMobile } from 'src/styles/mediaQueries'
 import { Stylesheet } from 'src/styles/types'
 
-
 export function MarketMap() {
-
   const isMobile = useIsMobile()
   const navigate = useNavigate()
 
@@ -91,8 +88,4 @@ const style: Stylesheet = {
       marginTop: '1.5em',
     },
   },
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 5e25ec9b98c0ecd5e1220eaa9dfa516414535a80
