@@ -2,7 +2,7 @@ import { PropsWithChildren, useState } from 'react'
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import { BadBrowserScreen } from 'src/app/BadBrowserScreen'
 import { ErrorBoundary } from 'src/app/FailScreen'
-import MarketForm from 'src/app/nana_MarketForm'
+// import MarketForm from 'src/app/nana_MarketForm'
 import { MarketList } from 'src/app/nana_MarketList'
 import { NotFoundScreen } from 'src/app/NotFoundScreen'
 import { useSplashScreen } from 'src/app/splash'
@@ -30,7 +30,7 @@ import { SendFormScreen } from 'src/features/send/SendFormScreen'
 import { SettingsScreen } from 'src/features/settings/SettingsScreen'
 import { WalletScreenTest } from 'src/features/wallet/WalletScreenTest'
 import { useBrowserFeatureChecks } from 'src/utils/browsers'
-import MarketMap from './nana_MarketMap'
+// import MarketMap from './nana_MarketMap'
 // import { NFTpage } from 'src/app/nana_NFTpage'
 // import { NFTpaint } from 'src/app/nana_NFTpaint'
 
@@ -46,8 +46,8 @@ function Router(props: PropsWithChildren<any>) {
 export const App = () => {
   const showSplash = useSplashScreen()
   const isBrowserSupported = useBrowserFeatureChecks()
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [user,setUser] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
+  const [user, setUser] = useState(false)
   // Don't load the app until we're done with the splash screen
   if (showSplash) return null
 
@@ -76,16 +76,17 @@ export const App = () => {
               <Route path="wallet" element={<WalletScreenTest />} />
               <Route path="settings" element={<SettingsScreen />} />
 
-              <Route path="store-detail" element={<StoreDetailPage/>}/>
-              <Route path="market-register" element={<MarketForm/>}/>
-              <Route path="market-map" element={<MarketMap/>}/>
-              <Route path="bigmarket/1" element={<MarketList/>}/>
+              <Route path="store-detail" element={<StoreDetailPage />} />
+              {/* <Route path="market-register" element={<MarketForm />} />
+              <Route path="market-map" element={<MarketMap />} /> */}
+              <Route path="bigmarket/1" element={<MarketList />} />
 
-
-              <Route path="seller-register" element={<RegisterScreen/>} />
-              <Route path="seller-login" element={<LoginForm setIsLoggedIn ={setIsLoggedIn} isLoggedIn = {isLoggedIn}/>}/>
+              <Route path="seller-register" element={<RegisterScreen />} />
+              <Route
+                path="seller-login"
+                element={<LoginForm setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />}
+              />
             </Route>
-              
 
             <Route path="/setup" element={<OnboardingNavigator />}>
               {/* <Route path="NFTpage" element={<NFTpage />} />

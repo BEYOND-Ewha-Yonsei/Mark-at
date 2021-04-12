@@ -118,8 +118,4 @@ const style: Stylesheet = {
     display: 'block',
     margin: '1em',
   },
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 5e25ec9b98c0ecd5e1220eaa9dfa516414535a80

@@ -3,19 +3,12 @@ import { useNavigate } from 'react-router'
 import { Button } from 'src/components/buttons/Button'
 import SearchIcon from 'src/components/icons/search.svg'
 import { Box } from 'src/components/layout/Box'
-<<<<<<< HEAD
-// import SimpleSlider from 'src/components/layout/nana_MarketSlider'
 import { mq, useIsMobile } from 'src/styles/mediaQueries'
 import { Stylesheet } from 'src/styles/types'
 
-export default function MarketMap() {
-=======
-import SimpleSlider from 'src/components/layout/nana_MarketSlider'
-import { mq, useIsMobile } from 'src/styles/mediaQueries'
-import { Stylesheet } from 'src/styles/types'
 
 export function MarketMap() {
->>>>>>> 5e25ec9b98c0ecd5e1220eaa9dfa516414535a80
+
   const isMobile = useIsMobile()
   const navigate = useNavigate()
 
@@ -57,11 +50,8 @@ export function MarketMap() {
           style={{ padding: '0 0.3em', border: 'none' }}
         />
       </Box>
-<<<<<<< HEAD
       {/* <SimpleSlider /> */}
-=======
-      <SimpleSlider />
->>>>>>> 5e25ec9b98c0ecd5e1220eaa9dfa516414535a80
+
       <Button onClick={onClickViewList} styles={style.button}>
         View the list of this markets
       </Button>

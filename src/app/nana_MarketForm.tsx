@@ -19,7 +19,6 @@ export default function MarketForm() {
     pic3: '',
   })
 
-
   const { name, categ, desc, location, period, hour, website, mainpic, pic1, pic2, pic3 } = store
 
   useEffect(() => {
@@ -38,9 +37,6 @@ export default function MarketForm() {
     const { name, value } = e.target
     setStore({
       ...store,
-<<<<<<< HEAD
-      [e.target.name]: e.target.value,
-=======
       [name]: value,
       [categ]: value,
       [desc]: value,
@@ -52,7 +48,6 @@ export default function MarketForm() {
       [pic1]: value,
       [pic2]: value,
       [pic3]: value,
->>>>>>> 5e25ec9b98c0ecd5e1220eaa9dfa516414535a80
     })
     console.log(store)
   }
@@ -64,7 +59,6 @@ export default function MarketForm() {
   return (
     <form onSubmit={handleSubmit}>
       <Box direction="column" align="center" styles={style.inputContainer}>
-
         <h2>Add My Market</h2>
         <Box direction="row" align="center"></Box>
         <Box direction="row" margin="2em 0 0 0">
@@ -96,10 +90,8 @@ export default function MarketForm() {
           <input name="website" type="text" value={website} onChange={onChange} />
         </Box>
         <button type="submit">Submit</button>
-
       </Box>
     </form>
-
   )
 }
 
