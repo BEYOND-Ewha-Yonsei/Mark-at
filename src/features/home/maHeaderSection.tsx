@@ -31,7 +31,7 @@ export function HeaderSection() {
         </Box>
       </Box>
       <Box direction="row" align="center" margin="3em 0 0 0">
-        <button style={style.btn} onClick={() => navigate('/market')}>Move to market close to you</button>
+        <button style={style.btn} onClick={() => navigate('/market-map')}>Move to market close to you</button>
       </Box>
     </Box>
   )

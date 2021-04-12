@@ -2,8 +2,9 @@ import { PropsWithChildren, useState } from 'react'
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import { BadBrowserScreen } from 'src/app/BadBrowserScreen'
 import { ErrorBoundary } from 'src/app/FailScreen'
-// import MarketForm from 'src/app/nana_MarketForm'
+import MarketForm from 'src/app/nana_MarketForm'
 import { MarketList } from 'src/app/nana_MarketList'
+import { MarketMap } from 'src/app/nana_MarketMap'
 import { NotFoundScreen } from 'src/app/NotFoundScreen'
 import { useSplashScreen } from 'src/app/splash'
 import { UpdateBanner } from 'src/app/UpdateBanner'
@@ -66,21 +67,13 @@ export const App = () => {
               <Route path="send-review" element={<SendConfirmationScreen />} />
               <Route path="exchange-review" element={<ExchangeConfirmationScreen />} />
               <Route path="exchange" element={<ExchangeFormScreen />} />
-              {/* <Route path="lock" element={<LockFormScreen />} />
-              <Route path="lock-review" element={<LockConfirmationScreen />} />
-              <Route path="validators" element={<ExploreValidatorsScreen />} />
-              <Route path="stake" element={<StakeFormScreen />} />
-              <Route path="stake-review" element={<StakeConfirmationScreen />} />
-              <Route path="governance" element={<GovernanceFormScreen />} />
-              <Route path="governance-review" element={<GovernanceConfirmationScreen />} /> */}
               <Route path="wallet" element={<WalletScreenTest />} />
               <Route path="settings" element={<SettingsScreen />} />
 
               <Route path="store-detail" element={<StoreDetailPage />} />
-              {/* <Route path="market-register" element={<MarketForm />} />
-              <Route path="market-map" element={<MarketMap />} /> */}
+              <Route path="market-register" element={<MarketForm />} />
+              <Route path="market-map" element={<MarketMap />} />
               <Route path="bigmarket/1" element={<MarketList />} />
-
               <Route path="seller-register" element={<RegisterScreen />} />
               <Route
                 path="seller-login"

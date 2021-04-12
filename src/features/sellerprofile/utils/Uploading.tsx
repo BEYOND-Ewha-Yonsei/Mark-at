@@ -13,7 +13,6 @@ function getBase64(file:any) {
   });
 }
 
-
 function beforeUpload(file: any) {
   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
   if (!isJpgOrPng) {

@@ -5,6 +5,7 @@ import brush1 from 'src/components/icons/brush1.svg'
 import brush2 from 'src/components/icons/brush2.svg'
 import brush3 from 'src/components/icons/brush3.svg'
 import { Box } from 'src/components/layout/Box'
+import { ScreenContentFrame } from 'src/components/layout/ScreenContentFrame'
 import { HeaderSection } from 'src/features/home/maHeaderSection'
 import { Color } from 'src/styles/Color'
 import { Font } from 'src/styles/fonts'
@@ -71,7 +72,7 @@ export function HomeScreen() {
   if (isDismissed) return null
 
   return (
-      <div css={style.container}>
+      <ScreenContentFrame>
         <HeaderSection />
         <HrDivider styles={style.divider} />
         
@@ -88,7 +89,7 @@ export function HomeScreen() {
             <p css={style.tip}>You just have to buy anything from any market shown on Mark-at! to get these attractive footprint NFTs, also albe to create your indigenous with them. </p>
           </Box>
         </Box>
-      </div>
+      </ScreenContentFrame>
   )
 }
 
