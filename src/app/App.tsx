@@ -1,10 +1,14 @@
+import * as React from 'react'
 import { PropsWithChildren, useState } from 'react'
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import { BadBrowserScreen } from 'src/app/BadBrowserScreen'
 import { ErrorBoundary } from 'src/app/FailScreen'
 import MarketForm from 'src/app/nana_MarketForm'
+// import MarketForm from 'src/app/nana_MarketForm'
 import { MarketList } from 'src/app/nana_MarketList'
 import { MarketMap } from 'src/app/nana_MarketMap'
+import { NFTpage } from 'src/app/nana_NFTpage'
+import { NFTpaint } from 'src/app/nana_NFTpaint'
 import { NotFoundScreen } from 'src/app/NotFoundScreen'
 import { useSplashScreen } from 'src/app/splash'
 import { UpdateBanner } from 'src/app/UpdateBanner'
@@ -31,9 +35,6 @@ import { SendFormScreen } from 'src/features/send/SendFormScreen'
 import { SettingsScreen } from 'src/features/settings/SettingsScreen'
 import { WalletScreenTest } from 'src/features/wallet/WalletScreenTest'
 import { useBrowserFeatureChecks } from 'src/utils/browsers'
-// import MarketMap from './nana_MarketMap'
-// import { NFTpage } from 'src/app/nana_NFTpage'
-// import { NFTpaint } from 'src/app/nana_NFTpaint'
 
 function Router(props: PropsWithChildren<any>) {
   // The BrowserRouter works everywhere except windows so using hash for electron
@@ -67,13 +68,22 @@ export const App = () => {
               <Route path="send-review" element={<SendConfirmationScreen />} />
               <Route path="exchange-review" element={<ExchangeConfirmationScreen />} />
               <Route path="exchange" element={<ExchangeFormScreen />} />
+              {/* <Route path="lock" element={<LockFormScreen />} />
+              <Route path="lock-review" element={<LockConfirmationScreen />} />
+              <Route path="validators" element={<ExploreValidatorsScreen />} />
+              <Route path="stake" element={<StakeFormScreen />} />
+              <Route path="stake-review" element={<StakeConfirmationScreen />} />
+              <Route path="governance" element={<GovernanceFormScreen />} />
+              <Route path="governance-review" element={<GovernanceConfirmationScreen />} /> */}
               <Route path="wallet" element={<WalletScreenTest />} />
               <Route path="settings" element={<SettingsScreen />} />
-
+              <Route path="NFTpage" element={<NFTpage />} />
+              <Route path="NFTpaint" element={<NFTpaint />} />
               <Route path="store-detail" element={<StoreDetailPage />} />
               <Route path="market-register" element={<MarketForm />} />
               <Route path="market-map" element={<MarketMap />} />
               <Route path="bigmarket/1" element={<MarketList />} />
+
               <Route path="seller-register" element={<RegisterScreen />} />
               <Route
                 path="seller-login"
@@ -82,8 +92,6 @@ export const App = () => {
             </Route>
 
             <Route path="/setup" element={<OnboardingNavigator />}>
-              {/* <Route path="NFTpage" element={<NFTpage />} />
-              <Route path="NFTpaint" element={<NFTpaint />} /> */}
               <Route path="/" element={<WelcomeScreen />} />
               <Route path="new" element={<NewWalletScreen />} />
               <Route path="existing" element={<ImportChoiceScreen />} />

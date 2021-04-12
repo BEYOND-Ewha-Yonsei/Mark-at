@@ -1,7 +1,5 @@
 import * as React from 'react'
 import { Component } from 'react'
-// import Slider from 'react-slick'
-import { Box } from 'src/components/layout/Box'
 import { Stylesheet } from 'src/styles/types'
 
 const dotLocation = [
@@ -63,7 +61,7 @@ export default class SimpleSlider extends Component {
     }
     return (
       <div>
-        <Slider {...settings}>
+        {/* <Slider {...settings}>
           <Box align="center" styles={style.marketCard}>
             <img src="../static/market1.jpg" style={style.marketPicture} />
             <div className="textBox" style={style.marketProfile}>
@@ -92,7 +90,7 @@ export default class SimpleSlider extends Component {
               <h4 margin-top="0px">Venice Boulevard 13000, CA US</h4>
             </div>
           </Box>
-        </Slider>
+        </Slider> */}
       </div>
     )
   }
