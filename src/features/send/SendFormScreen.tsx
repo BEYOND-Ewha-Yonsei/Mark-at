@@ -1,9 +1,11 @@
+import axios from 'axios'
 import { utils } from 'ethers'
 import { Location } from 'history'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { RootState } from 'src/app/rootReducer'
+import { getContract } from 'src/blockchain/contracts'
 import { Button } from 'src/components/buttons/Button'
 import { TextButton } from 'src/components/buttons/TextButton'
 import PasteIcon from 'src/components/icons/paste.svg'
@@ -13,12 +15,13 @@ import { NumberInput } from 'src/components/input/NumberInput'
 import { TextArea } from 'src/components/input/TextArea'
 import { Box } from 'src/components/layout/Box'
 import { ScreenContentFrame } from 'src/components/layout/ScreenContentFrame'
+import { CeloContract } from 'src/config'
 import { Currency } from 'src/currency'
 import { validate } from 'src/features/send/sendToken'
 import { SendTokenParams } from 'src/features/send/types'
 import { txFlowStarted } from 'src/features/txFlow/txFlowSlice'
 import { TxFlowTransaction, TxFlowType } from 'src/features/txFlow/types'
-import { getCurrencyBalance } from 'src/features/wallet/utils'
+import { getCurrencyBalance, useWalletAddress } from 'src/features/wallet/utils'
 import { Font } from 'src/styles/fonts'
 import { mq } from 'src/styles/mediaQueries'
 import { Stylesheet } from 'src/styles/types'
@@ -81,6 +84,33 @@ export function SendFormScreen() {
     setValues({ ...values, amount: maxAmount })
   }
 
+  //*~*~*~*~*~*~*~*~*~**~*~*~~**~*~~*Code for mint
+  const test = getContract(CeloContract.MarkAtToken)
+  const address = useWalletAddress()
+  const Metadata = [{}]
+  const handleOnClick = () => {
+    console.log(test.testMint('test1', address, Metadata[getRandNum()]), '작동')
+    // console.log(Metadata[0])
+  }
+  const getRandNum = () => {
+    const randNum = Math.floor(Math.random() * 10)
+    return randNum
+  }
+
+  //*~*~*~*~*~*~*~*~*~**~*~*~~**~*~~*Code for mint
+  const [bigMarket, setBigMarket] = useState([])
+  useEffect(() => {
+    axios
+      .get(`http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/server/bigmarket/1/`)
+      .then(({ data }) => {
+        setBigMarket(data.store)
+        console.log(data.store)
+        console.log(bigMarket)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }, [])
   return (
     <ScreenContentFrame>
       <div css={style.content}>
@@ -171,7 +201,7 @@ export function SendFormScreen() {
             />
           </Box>
 
-          <Button type="submit" size="m" margin="0 1em 0 0">
+          <Button type="submit" size="m" margin="0 1em 0 0" onClick={handleOnClick}>
             Continue
           </Button>
         </form>
