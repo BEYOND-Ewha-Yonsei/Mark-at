@@ -4,7 +4,6 @@ import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import { BadBrowserScreen } from 'src/app/BadBrowserScreen'
 import { ErrorBoundary } from 'src/app/FailScreen'
 import MarketForm from 'src/app/nana_MarketForm'
-// import MarketForm from 'src/app/nana_MarketForm'
 import { MarketList } from 'src/app/nana_MarketList'
 import { MarketMap } from 'src/app/nana_MarketMap'
 import { NFTpage } from 'src/app/nana_NFTpage'
@@ -29,7 +28,6 @@ import { OnboardingNavigator } from 'src/features/onboarding/OnboardingNavigator
 import { SetPincodeScreen } from 'src/features/onboarding/pincode/SetPincodeScreen'
 import { WelcomeScreen } from 'src/features/onboarding/welcome/WelcomeScreen'
 import { ChangePincodeScreen } from 'src/features/pincode/ChangePincodeScreen'
-import StoreDetailPage from 'src/features/sellerprofile/StoreDetailPage'
 import { SendConfirmationScreen } from 'src/features/send/SendConfirmationScreen'
 import { SendFormScreen } from 'src/features/send/SendFormScreen'
 import { SettingsScreen } from 'src/features/settings/SettingsScreen'
@@ -44,12 +42,12 @@ function Router(props: PropsWithChildren<any>) {
     <BrowserRouter>{props.children}</BrowserRouter>
   )
 }
-
 export const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
+  const [userId, setUserId] = useState<string>("");
   const showSplash = useSplashScreen()
   const isBrowserSupported = useBrowserFeatureChecks()
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
-  const [user, setUser] = useState(false)
+
   // Don't load the app until we're done with the splash screen
   if (showSplash) return null
 
@@ -61,33 +59,26 @@ export const App = () => {
         <ModalProvider>
           <UpdateBanner />
           <Routes>
-            <Route path="/" element={<HomeNavigator />}>
+            <Route path="/" element={<HomeNavigator isLoggedIn={isLoggedIn}/>}>
               <Route path="/" element={<HomeScreen />} />
               <Route path="tx" element={<TransactionReview />} />
               <Route path="send" element={<SendFormScreen />} />
               <Route path="send-review" element={<SendConfirmationScreen />} />
               <Route path="exchange-review" element={<ExchangeConfirmationScreen />} />
               <Route path="exchange" element={<ExchangeFormScreen />} />
-              {/* <Route path="lock" element={<LockFormScreen />} />
-              <Route path="lock-review" element={<LockConfirmationScreen />} />
-              <Route path="validators" element={<ExploreValidatorsScreen />} />
-              <Route path="stake" element={<StakeFormScreen />} />
-              <Route path="stake-review" element={<StakeConfirmationScreen />} />
-              <Route path="governance" element={<GovernanceFormScreen />} />
-              <Route path="governance-review" element={<GovernanceConfirmationScreen />} /> */}
               <Route path="wallet" element={<WalletScreenTest />} />
               <Route path="settings" element={<SettingsScreen />} />
+              
               <Route path="NFTpage" element={<NFTpage />} />
               <Route path="NFTpaint" element={<NFTpaint />} />
-              <Route path="store-detail" element={<StoreDetailPage />} />
-              <Route path="market-register" element={<MarketForm />} />
+              {/* <Route path="store-detail/:storeId" component ={StoreDetailPage} /> */}
+              <Route path="market-register" element={<MarketForm userId={userId}/>} />
               <Route path="market-map" element={<MarketMap />} />
               <Route path="bigmarket/1" element={<MarketList />} />
-
               <Route path="seller-register" element={<RegisterScreen />} />
               <Route
                 path="seller-login"
-                element={<LoginForm setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />}
+                element={<LoginForm setIsLoggedIn={setIsLoggedIn} setUserId={setUserId}/>}
               />
             </Route>
 

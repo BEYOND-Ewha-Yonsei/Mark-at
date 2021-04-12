@@ -8,7 +8,7 @@ import website from 'src/components/icons/phone-call.svg';
 import { Box } from 'src/components/layout/Box';
 import { Stylesheet } from 'src/styles/types';
 
-export default function MarketInfo() {
+export default function MarketInfo(store: any) {
   //const [Store, setStore] = useState({ id: 1,name:"",location:"",desc:"",categ:"",period:"",hour:"",website:"",mainpic:"",pic1:"",pic2:"",pic3:"",clap:0});
   //const [Store, setStore] = useState({});
 

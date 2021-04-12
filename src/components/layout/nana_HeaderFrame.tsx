@@ -6,7 +6,6 @@ import { Stylesheet } from 'src/styles/types';
 
 export function HeaderFrame(props: PropsWithChildren<unknown>) {
   const navigate = useNavigate()
-  //const Pay = (Pay:any) => <Icon component={Pay} />
   return (
     <Box direction="column" styles={style.container}>
       <Header />

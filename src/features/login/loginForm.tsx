@@ -10,9 +10,9 @@ import { Box } from 'src/components/layout/Box';
 import { mq } from 'src/styles/mediaQueries';
 import { Stylesheet } from 'src/styles/types';
 
-export function LoginForm( setIsLoggedIn: any, isLoggedIn: any) {
+export function LoginForm( setIsLoggedIn: any, setUserId: any) {
   console.log(setIsLoggedIn)
-  console.log(isLoggedIn)
+  
   const [form, setForm] = useState({ id: "", pw: "" });
   const navigate = useNavigate()
   const handleFormChange = (e:any) => {
@@ -35,6 +35,7 @@ export function LoginForm( setIsLoggedIn: any, isLoggedIn: any) {
   const handleSubmit = () => {
     console.log(form);
     if (!validCheck) return;
+    setUserId({userId: form.id})
     axios
       .post(`http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/server/login/`,form )
       .then(function (response) {

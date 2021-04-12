@@ -1,6 +1,7 @@
+import { SearchOutlined } from '@ant-design/icons'
+import { Input } from 'antd'
 import { useNavigate } from 'react-router'
 import { Button } from 'src/components/buttons/Button'
-import SearchIcon from 'src/components/icons/search.svg'
 import { Box } from 'src/components/layout/Box'
 import { mq, useIsMobile } from 'src/styles/mediaQueries'
 import { Stylesheet } from 'src/styles/types'
@@ -38,46 +39,52 @@ export function MarketMap() {
   }
 
   return (
-    <Box direction="column" styles={style.frame}>
-      <Box styles={style.search}>
-        <img width="16.5pt" src={SearchIcon} style={{ padding: '0 0.2em' }} />
-        <input
-          name="search"
-          value="Pick your market"
-          style={{ padding: '0 0.3em', border: 'none' }}
-        />
+      <Box direction="column" styles={style.formContent}>
+        <Box direction="column" align="center" margin="3em 1em 1em 0">
+          <Input
+            size="large"
+            name="search"
+            placeholder="Pick your market"
+            style={{ padding: '0 0.3em', border: 'none' }}
+            prefix={<SearchOutlined />}
+          />
+        </Box>
+        {/* <SimpleSlider /> */}
+        <Box direction="column" align="center"margin="20em 0 0 0">
+          <Button onClick={onClickViewList} styles={style.button}>
+            View the list of this markets
+          </Button>
+        </Box>
       </Box>
-      {/* <SimpleSlider /> */}
 
-      <Button onClick={onClickViewList} styles={style.button}>
-        View the list of this markets
-      </Button>
-    </Box>
   )
 }
 
 const style: Stylesheet = {
-  frame: {
+  formContent: {
+    [mq[480]]: {
+      marginLeft: '-1.3em',
+    },
     minHeight: '100vh',
     backgroundImage: `url("static/maps.jpg")`,
   },
-  search: {
-    position: 'absolute',
-    top: '6em',
-    left: '50%',
-    marginLeft: '-44vw',
-    padding: '1em 1em',
-    width: '88vw',
-    height: '3.5em',
-    background: 'white',
-    borderRadius: 10,
-    boxShadow: '0px 0px 10px #ccc',
-  },
+  // search: {
+  //   position: 'absolute',
+  //   top: '6em',
+  //   left: '50%',
+  //   marginLeft: '-44vw',
+  //   padding: '1em 1em',
+  //   width: '88vw',
+  //   height: '3.5em',
+  //   background: 'white',
+  //   borderRadius: 10,
+  //   boxShadow: '0px 0px 10px #ccc',
+  // },
   button: {
     position: 'absolute',
-    bottom: '3.75em',
-    left: '50%',
-    marginLeft: '-8em',
+    bottom: '5em',
+    // left: '50%',
+    // marginLeft: '-8em',
     width: '18em',
     minWidth: '15em',
     height: '2.8em',
