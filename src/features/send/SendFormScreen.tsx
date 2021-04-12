@@ -1,7 +1,6 @@
-import axios from 'axios'
 import { utils } from 'ethers'
 import { Location } from 'history'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { RootState } from 'src/app/rootReducer'
@@ -98,19 +97,7 @@ export function SendFormScreen() {
   }
 
   //*~*~*~*~*~*~*~*~*~**~*~*~~**~*~~*Code for mint
-  const [bigMarket, setBigMarket] = useState([])
-  useEffect(() => {
-    axios
-      .get(`http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/server/bigmarket/1/`)
-      .then(({ data }) => {
-        setBigMarket(data.store)
-        console.log(data.store)
-        console.log(bigMarket)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-  }, [])
+
   return (
     <ScreenContentFrame>
       <div css={style.content}>
