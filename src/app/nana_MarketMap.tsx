@@ -10,7 +10,7 @@ export function MarketMap() {
   const navigate = useNavigate()
 
   const onClickViewList = () => {
-    navigate('/MarketList')
+    navigate('/bigmarket/1')
   }
 
   const nfts = [

@@ -43,7 +43,7 @@ export const DrawerMenu = () => {
   const onItemClick = (key: string) => async () => {
     switch (key) {
       case 'market':
-        navigate('/MarketMap')
+        navigate('/market-map')
         break
       case 'nftlist':
         navigate('/NFTpage')
@@ -51,8 +51,8 @@ export const DrawerMenu = () => {
       case 'nftpaint':
         navigate('/NFTpaint')
         break
-      case 'mypage':
-        navigate('/MyPage')
+      case 'marketregister':
+        navigate('/market-register')
         break
       default:
         logger.info('Unknown Menu Item Clicked: ', key)
@@ -154,12 +154,12 @@ export const DrawerMenu = () => {
                 />
               </div>
               <DrawerMenuItem
-                key="mypage"
-                label="My Page"
+                key="marketregister"
+                label="My Market"
                 icon={HeartIcon}
                 isIcon={true}
                 iconWidth="24pt"
-                onClick={onItemClick('mypage')}
+                onClick={onItemClick('marketregister')}
               />
             </div>
           </Drawer>
