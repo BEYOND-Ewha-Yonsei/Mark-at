@@ -402,7 +402,7 @@ export const ABI = [
         type: 'string',
       },
     ],
-    name: 'testMint',
+    name: 'mintMarkAtToken',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
