@@ -125,7 +125,7 @@ export const DrawerMenu = () => {
                   <span>CELO</span>
                 </Box>
                 {isLoggedIn ? 
-                <button style={style.btn} onClick={()=>navigate('/market-register')}><span style={style.grad}>modify market</span></button>  : 
+                <button style={style.btn} onClick={()=>navigate('/market-register')}><span style={style.grad}>register/modify market</span></button>  : 
                 <button style={style.btn} onClick={()=>navigate('/seller-login')}><span style={style.grad}>seller login</span></button> }
               </div>
             </div>
@@ -158,6 +158,7 @@ export const DrawerMenu = () => {
                   onClick={onItemClick('nftpaint')}
                 />
               </div>
+              {isLoggedIn ? 
               <DrawerMenuItem
                 key="marketregister"
                 label="My Market"
@@ -165,7 +166,7 @@ export const DrawerMenu = () => {
                 isIcon={true}
                 iconWidth="24pt"
                 onClick={onItemClick('marketregister')}
-              />
+              />:<></>}
             </div>
           </Drawer>
         </>

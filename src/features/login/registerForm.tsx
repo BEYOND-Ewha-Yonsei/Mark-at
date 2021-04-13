@@ -1,13 +1,12 @@
+import { Input } from 'antd';
 import axios from "axios";
 import * as React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { Button } from 'src/components/buttons/Button';
 import { Box } from 'src/components/layout/Box';
 import { Color } from 'src/styles/Color';
 import { mq } from 'src/styles/mediaQueries';
 import { Stylesheet } from 'src/styles/types';
-
 export function RegisterForm() {
   const [form, setForm] = useState({ id: "", pw: "",email:"",nickname:"" });
   const navigate = useNavigate()
@@ -20,13 +19,7 @@ export function RegisterForm() {
   const resetForm = () => {
     setForm({ id:"", pw:"",email:"", nickname:"" });
   };
-  // const validCheck = () => {
-  //   if (form.email.length === 0 || form.pw.length === 0||form.id.length === 0) {
-  //     alert("fill every section!");
-  //     return false;
-  //   }
-  //   return true;
-  // };
+
   const handleSubmit = () => {
     console.log(form);
     //if (!validCheck) return;
@@ -50,8 +43,8 @@ export function RegisterForm() {
         <Box direction="column" styles={style.inputContainer}>
           <Box direction="row" margin="2em 0 0 0">
             <span css={style.inputLabel}>ID</span>
-            <input
-              css={{...style.input }}
+            <Input
+              size="large"
               name="id"
               type="text"
               value={form.id}
@@ -60,8 +53,8 @@ export function RegisterForm() {
           </Box>
           <Box direction="row" margin="2em 0 0 0">
             <span css={style.inputLabel}>PASSWORD</span>
-            <input
-              css={{  ...style.input }}
+            <Input
+              size="large"
               name="pw"
               value={form.pw}
               onChange={handleFormChange}
@@ -70,8 +63,8 @@ export function RegisterForm() {
           </Box>
           <Box direction="row" margin="2em 0 0 0">
             <span css={style.inputLabel}>NICKNAME</span>
-            <input
-              css={{...style.input }}
+            <Input
+              size="large"
               name="nickname"
               type="text"
               value={form.nickname}
@@ -80,24 +73,24 @@ export function RegisterForm() {
           </Box>
 
           <Box direction="row" margin="2em 0 0 0">
-            <span css={style.email}>EMAIL</span>
-            <input
-              css={{...style.input }}
+            <span css={style.inputLabel}>EMAIL</span>
+            <Input
+              size="large"
               name="email"
               type="text"
               value={form.email}
               onChange={handleFormChange}
             />
+
           </Box>
         </Box>
       </div>
       <Box direction="row" align ="center" margin="3em 0 0 0">
-        <Button
-            type="button"
-            size="m"
-            color={Color.altGrey} 
+      <button
+            style={style.btn}
+
             onClick={handleSubmit}>Register
-        </Button>
+        </button>
       </Box>
     </Box>
   );
@@ -116,7 +109,7 @@ const style: Stylesheet = {
   },
   inputLabel: {
     textAlign: 'left',
-    width: '6em',
+    width: '8em',
     paddingRight: '1em',
     [mq[480]]: {
       width: '8em',
@@ -139,6 +132,18 @@ const style: Stylesheet = {
         opacity: 0,
       },
     },
+  },
+  btn: {
+    width: '12em',
+    height:'2em',
+    marginTop: '1.5em',
+    background: 'linear-gradient(0.25turn,rgba(247,214,55),rgba(47,207,87))',
+    outline: 'none',
+    border: 'none',
+    borderRadius: 5,
+    fontWeight: 500,
+    color: 'rgba(255,255,255)',
+    font: "Poppins-Medium"
   },
 }
 

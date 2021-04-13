@@ -1,27 +1,27 @@
 import { Input } from 'antd'
 import axios from 'axios'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router'
+import { RootState } from 'src/app/rootReducer'
 // import Uploading from 'src/app/utils/Uploading'
 import { Box } from 'src/components/layout/Box'
 import { Stylesheet } from 'src/styles/types'
+import styled from "styled-components"
 
-export default function MarketForm(userId: any) {
-  type Istore = {
-    id: string
-    name: string
-    categ: string
-    desc: string
-    location: string
-    period: string
-    hour: string
-    website: string
-    mainpic: string
-    pic1: string
-    pic2: string
-    pic3: string
-  }
-  const [store, setStore] = useState<Istore>({
-    id: userId,
+export default function MarketForm() {
+  const navigate = useNavigate()
+  const [ImgURL1, setImgURL1] = useState<any|null>();
+  const [ImgURL2, setImgURL2] = useState<any|null>();
+  const [ImgURL3, setImgURL3] = useState<any|null>();
+  const [ImgURL4, setImgURL4] = useState<any|null>();
+
+  const [mainpic, setMainpic] = useState("");
+  const [pic1, setPic1] = useState("");
+  const [pic2, setPic2] = useState("");
+  const [pic3, setPic3] = useState("");
+  const userId = useSelector((s: RootState) => s.user.userId)
+  const [store, setStore] = useState({
     name: '',
     categ: '',
     desc: '',
@@ -41,30 +41,123 @@ export default function MarketForm(userId: any) {
     })
     console.log(store)
   }
-
+  const onChangeImage = (e: any) => {
+		e.preventDefault();
+		const reader = new FileReader();
+		const file = e.target.files[0];
+		reader.onloadend = () => {
+      switch(e.target.name){
+        case "mainpic":
+          setMainpic(file)
+          console.log(mainpic)
+          setImgURL1(reader.result)
+          break;
+        case "pic1":
+          setPic1(file)
+          console.log(pic1)
+          setImgURL2(reader.result)
+          break;
+        case "pic2":
+          setPic2(file)
+          console.log(pic2)
+          setImgURL3(reader.result)
+          break;
+        case "pic3":
+          setPic3(file)    
+          console.log(pic3)
+          setImgURL4(reader.result)
+          break;
+      }
+    }
+    reader.readAsDataURL(file);
+	};
   const handleSubmit = () => {
+    const formData = new FormData();
+    formData.append('id',userId)
+    formData.append('name',store.name)
+    formData.append('categ',store.categ)
+    formData.append('desc',store.desc)
+    formData.append('location',store.location)
+    formData.append('period',store.period)
+    formData.append('hour',store.hour)
+    formData.append('website',store.website)
+    formData.append('mainpic',mainpic)
+    formData.append('pic1',pic1)
+    formData.append('pic2',pic2)
+    formData.append('pic3',pic3)
     axios
-      .get(`http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/server/store/1`)
+      .post(`http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/server/store/`,formData)
       .then((response) => {
         console.log(response)
-        setStore(response.data)
+        alert('Product Successfully Uploaded')
+        navigate('/myMarket')
       })
       .catch(function (error) {
-        alert(error)
         console.log(error)
+        alert('fail')
       })
   }
-
+  const navi = () => {
+    alert('Product Successfully Uploaded')
+    navigate('/myMarket')
+  }
   return (
     <form onSubmit={handleSubmit}>
       <Box direction="column" align="center" styles={style.inputContainer}>
         <Box direction="column" align="center">
-          {/* <Uploading opt="mainpic" setStore={setStore} style={{ width: '90%' }} />
-          <Box direction="row" align="center">
-            <Uploading opt="pic1" setStore={setStore} />
-            <Uploading opt="pic2" setStore={setStore} />
-            <Uploading opt="pic3" setStore={setStore} />
-          </Box> */}
+          <Picture>
+            <FileBox>
+              <InputFile
+                type='file'
+                name='mainpic'
+                onChange={onChangeImage}
+                id='image'
+              />
+            </FileBox>
+            <ImageArea>
+              {ImgURL1 && <img className='preview' src={ImgURL1} width='80%' />}
+            </ImageArea>
+          </Picture>
+          <Picture>
+            <FileBox>
+              <InputFile
+                type='file'
+                name='pic1'
+                onChange={onChangeImage}
+                id='image'
+              />
+            </FileBox>
+            <ImageArea>
+              {ImgURL2 && <img className='preview' src={ImgURL2} width='80%' />}
+            </ImageArea>
+          </Picture>
+          <Picture>
+            <FileBox>
+              <InputFile
+                type='file'
+                name='pic2'
+                onChange={onChangeImage}
+                id='image'
+              />
+            </FileBox>
+            <ImageArea>
+              {ImgURL3 && <img className='preview' src={ImgURL3} width='80%' />}
+            </ImageArea>
+          </Picture>
+          <Picture>
+            <FileBox>
+              <InputFile
+                type='file'
+                name='pic3'
+                onChange={onChangeImage}
+                id='image'
+              />
+            </FileBox>
+            <ImageArea>
+              {ImgURL4 && <img className='preview' src={ImgURL4} width='80%' />}
+            </ImageArea>
+          </Picture>
+
         </Box>
         <Box direction="column" styles={style.formContent}>
           <Box styles={style.info}>
@@ -140,7 +233,7 @@ export default function MarketForm(userId: any) {
           />
         </Box>
         <Box direction="row" margin="1em 0 0 0">
-          <button style={style.btn} onClick={handleSubmit}>
+          <button style={style.btn} onClick={navi}>
             submit
           </button>
         </Box>
@@ -188,3 +281,20 @@ const style: Stylesheet = {
     font: 'Poppins-Medium',
   },
 }
+
+const Picture = styled.div`
+	margin: 1rem;
+	width: 50%;
+	text-align: center;
+`;
+const FileBox = styled.div`
+	width: 100%;
+	margin: auto;
+	align-item: center;
+	justify-content: center;
+	display: flex;
+`;
+const InputFile = styled.input``;
+const ImageArea = styled.div`
+	margin: 1rem;
+`;
