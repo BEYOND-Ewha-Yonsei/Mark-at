@@ -9,8 +9,8 @@ import website from 'src/components/icons/phone-call.svg';
 import { Box } from 'src/components/layout/Box';
 import { Stylesheet } from 'src/styles/types';
 
-export default function MarketInfo1() {
-    const Store =({
+export default function MarketInfo2() {
+    const Store =( {
       "id": "19",
       "name": "Toymonster",
       "location": "Venice Boulevard 13000, CA US",
@@ -26,9 +26,8 @@ export default function MarketInfo1() {
       "clap": 89
   });
     return (
-        <div style={style.back}>
+        <>
             <Carousel autoplay>
-            {/* <div style={style.scrollwrap}> */}
               <div style={style.pic}>
               <img style={style.pic} src={Store.mainpic}></img>
               </div>
@@ -39,25 +38,22 @@ export default function MarketInfo1() {
                 <img style={style.pic} src={Store.pic2}></img>
               </div>
               <div style={style.pic}>
-                <img src={Store.pic3}></img>
+                <img style={style.pic} src={Store.pic3} ></img>
               </div>
-            {/* </div> */}
             </Carousel>
-          <Box direction="column" align="start" >
-            <div style={style.back2}>
-              <Box direction="column" align="start"margin="1em 2em 2em 2em">
-                <Box direction="row" align="start"margin="0 0 1em 0">
-                  <h1 css={style.header}>{Store.name}</h1>
-                  <div css={{ display: 'inline', padding: '0.2em 0' }}>
-                  <img src={HeartIcon} />
-                  <h5 css={{ textAlign: 'center' }}>{Store.clap}</h5>
-                  </div>
-                </Box>
-                <button style={style.categ}>#{Store.categ}</button>
+          <Box direction="column" align="start" styles={style.back} >
+            <Box direction="column" align="start" styles={style.background}>
+              <Box direction="row" align="start"margin="0 1em 0 1em">
+                <h1 css={style.header}>{Store.name}</h1>
+                <div css={{ display: 'inline', padding: '0 10em' }}>
+                <img src={HeartIcon} />
+                <h5 css={{ textAlign: 'center' }}>{Store.clap}</h5>
+                </div>
               </Box>
-            </div>
-            <Box direction="column" align="start"margin="1em 2em 5em 2em">
-              <div style={style.back2}>
+              <button style={style.categ}>#{Store.categ}</button>
+            </Box>
+            <Box margin='0.5em 0 0 0'></Box>
+            <Box direction="column" align="start" styles={style.background}>
                 <Box direction="column" align="start"> 
                   <h2 css={style.header3}>Intro</h2>
                   <h3 style={style.desc}>{Store.desc}</h3>
@@ -83,13 +79,16 @@ export default function MarketInfo1() {
                   <h3 style={style.desc}>Send here!</h3>
                   <p style={style.subdesc}>0x64075445D7a73b7E95aB9858Af6Ff43f370f7DA5</p>
                 </Box>
-              </div>
             </Box>
           </Box>
-        </div>
+        </>
     )
 }
 const style: Stylesheet = {
+  background: {
+    background: 'rgba( 255, 255, 255)',
+    padding: '1em',
+  },
   back:{
     background:'rgba(246,246,246)',
   },
