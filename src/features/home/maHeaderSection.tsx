@@ -65,7 +65,7 @@ const style: Stylesheet = {
     margin: '1em 0 0 0',
   },
   btn: {
-    width: '27em',
+    width: '20em',
     height: '3em',
     marginTop: '1.5em',
     marginBottom: '4em',

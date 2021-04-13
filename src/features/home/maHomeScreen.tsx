@@ -25,7 +25,7 @@ export function HomeScreen() {
           <img src={brush3} css={style.icon} alt="Tip" />
         </Box>
         <h1 css={style.header}>What is Footprint NFT?</h1>
-        <Box direction="column" align="center">
+        <Box direction="column" align="center" margin="0 2em 4em 2em">
           <p css={style.tip}>
             Footprint NFT is a NFT you can earn from buying stuffs at offline flea market near you.
           </p>
@@ -38,16 +38,41 @@ export function HomeScreen() {
           </p>
         </Box>
       </Box>
-      <div style={style.background}>
+      <Box direction="column" align="center" margin="0" styles={style.background}>
         <h1 css={style.header}>Famous Market List</h1>
-      </div>
+        <Box direction="row" align="center" margin="0" styles={style.famousMarket}>
+          <img
+            src="http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/SportSmith_Goods_3.jpg"
+            width="35%"
+            style={style.marketImage}
+          />
+
+          <Box direction="column" align="center" margin="0 1em 0 0">
+            <h3>Venice High Flea Market</h3>
+            <div css={style.desc}>Venice Boulevard, CA US</div>
+          </Box>
+        </Box>
+        <Box direction="row" align="center" margin="0" styles={style.famousMarket}>
+          <img
+            src="http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/Oldies_Trove_Store_2_XfhDDGN.jpg"
+            width="35%"
+            style={style.marketImage}
+          />
+
+          <Box direction="column" align="center" margin="0 0 0 1em">
+            <h3>Starway Flea Market</h3>
+            <div css={style.desc}>1223 Race St, Denver, CO 80206 United States</div>
+          </Box>
+        </Box>
+      </Box>
     </>
   )
 }
 
 const style: Stylesheet = {
   background: {
-    background: 'rgba( 246, 246, 246)',
+    background: 'rgba(246, 246, 246)',
+    padding: '2em 1em',
   },
   icon: {
     marginRight: '0.5em',
@@ -77,5 +102,18 @@ const style: Stylesheet = {
     ...Font.body,
     lineHeight: '1.4em',
     margin: '1em 0 0 0',
+  },
+  desc: {
+    color: 'rgb(153 153 153)',
+  },
+  famousMarket: {
+    width: '26em',
+    background: Color.primaryWhite,
+    padding: '1em',
+    margin: '1em',
+    borderRadius: '16pt',
+  },
+  marketImage: {
+    borderRadius: '10pt',
   },
 }
