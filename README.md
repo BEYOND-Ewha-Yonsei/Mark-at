@@ -19,7 +19,7 @@ Our dApp is divided into three parts.
 
 **1) Market Pages**
 
-Users can see the flee market lists shown on the map and check the detailed market informations entered inside the flee market.
+Users can see the flea market lists shown on the map and check the detailed market informations entered inside the flea market.
 
 **2) NFT Pages**
 
