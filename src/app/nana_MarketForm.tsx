@@ -54,6 +54,7 @@ export default function MarketForm() {
     .then((response) => {
       console.log(response)
       setStore(response.data)
+      console.log(store)
     })
     .catch(function (error) {
       alert(error)

@@ -17,11 +17,11 @@ export function HomeScreen() {
   if (isDismissed) return null
 
   return (
-    <div>
+    <>
       <div style={style.background}>
       <HeaderSection />
       </div>
-      <Box direction="column" align="center" margin="3em 1em 2em 0">
+      <Box direction="column" align="center" margin="3em 1em 0 1em">
         <Box direction="row" align="center">
           <img src={brush1} css={style.icon} alt="Tip" />
           <img src={brush2} css={style.icon} alt="Tip" />
@@ -37,7 +37,7 @@ export function HomeScreen() {
       <div style={style.background}>
       <h1 css={style.header}>Famous Market List</h1>
       </div>
-    </div>
+    </>
   )
 }
 

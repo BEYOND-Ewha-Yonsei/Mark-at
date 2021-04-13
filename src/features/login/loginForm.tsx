@@ -90,7 +90,7 @@ export function LoginForm() {
           </Box>
           <Box direction="column" align="center">
           <button
-              style={style.btn2}
+              style={style.btn}
               onClick={()=>{navigate('/seller-register')}}>Sign Up
           </button>
         </Box>

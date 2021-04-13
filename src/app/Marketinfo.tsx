@@ -89,8 +89,8 @@ const style: Stylesheet = {
     fontWeight: 'bold',
   },
   pic:{
-    width:'96px',
-    height:'96px'
+    width:'100%',
+    height:'100%',
   },
   header3: {
     fontWeight: 'bold',

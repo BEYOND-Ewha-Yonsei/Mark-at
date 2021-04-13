@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux'
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import { BadBrowserScreen } from 'src/app/BadBrowserScreen'
 import { ErrorBoundary } from 'src/app/FailScreen'
-import MarketInfo from 'src/app/Marketinfo'
 import MarketForm from 'src/app/nana_MarketForm'
 import { MarketList } from 'src/app/nana_MarketList'
 import { MarketMap } from 'src/app/nana_MarketMap'
@@ -13,6 +12,11 @@ import { NFTpaint } from 'src/app/nana_NFTpaint'
 import { NotFoundScreen } from 'src/app/NotFoundScreen'
 import { useSplashScreen } from 'src/app/splash'
 import { StoreDetailPage } from 'src/app/StoreDetailPage'
+import MarketInfo1 from 'src/app/storePages/store1'
+import MarketInfo2 from 'src/app/storePages/store2'
+import MarketInfo3 from 'src/app/storePages/store3'
+import MarketInfo4 from 'src/app/storePages/store4'
+import MarketInfo5 from 'src/app/storePages/store5'
 import { UpdateBanner } from 'src/app/UpdateBanner'
 import { ModalProvider } from 'src/components/modal/modalContext'
 import { config } from 'src/config'
@@ -37,6 +41,8 @@ import { SendFormScreen } from 'src/features/send/SendFormScreen'
 import { SettingsScreen } from 'src/features/settings/SettingsScreen'
 import { WalletScreenTest } from 'src/features/wallet/WalletScreenTest'
 import { useBrowserFeatureChecks } from 'src/utils/browsers'
+
+
 
 function Router(props: PropsWithChildren<any>) {
   // The BrowserRouter works everywhere except windows so using hash for electron
@@ -75,10 +81,18 @@ export const App = () => {
               
               <Route path="NFTpage" element={<NFTpage />} />
               <Route path="NFTpaint" element={<NFTpaint />} />
-              <Route path="store-detail/1" element ={<MarketInfo/>} /> 
+
               <Route path="market-register" element={<MarketForm />} />
-              <Route path="test" element={<MarketInfo/>} />
+
+              <Route path="store/1" element={<MarketInfo1/>} />
+              <Route path="store/2" element={<MarketInfo2/>} />
+              <Route path="store/3" element={<MarketInfo3/>} />
+              <Route path="store/4" element={<MarketInfo4/>} />
+              <Route path="store/5" element={<MarketInfo5/>} />
+
+              <Route path="store-detail/1" element ={<StoreDetailPage/>} /> 
               <Route path="store" element={<StoreDetailPage/>} />
+
               <Route path="market-map" element={<MarketMap />} />
               <Route path="bigmarket/1" element={<MarketList />} />
               <Route path="seller-register" element={<RegisterScreen />} />

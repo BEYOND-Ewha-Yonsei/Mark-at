@@ -9,7 +9,7 @@ export function HeaderSection() {
   const navigate = useNavigate()
   return (
 
-    <Box direction="column" align='center' margin="3em 1em 2m 0">
+    <Box direction="column" align='center'  margin="2em 1em 2em 1em">
       <h1 css={style.header}>Mark-At!</h1>
       <Box direction="column" align='center'>
         <label css={[Font.body, Font.bold]}>Earn your special marks buying </label>
@@ -31,7 +31,7 @@ export function HeaderSection() {
           <p css={style.tip}>Create indigenous picture with your footprint NFTs!</p>
         </Box>
       </Box>
-      <Box direction="row" align="center" margin="3em 0 0 0">
+      <Box direction="row" align="center" margin="1.5em 0 2 0">
         <button style={style.btn} onClick={() => navigate('/market-map')}>Move to market close to you</button>
       </Box>
     </Box>
@@ -66,7 +66,7 @@ const style: Stylesheet = {
     background: 'linear-gradient(0.25turn,rgba(247,214,55),rgba(47,207,87))',
     outline: 'none',
     border: 'none',
-    borderRadius: '12px',
+    borderRadius: 50,
     fontWeight: 500,
     color: 'rgba(255,255,255)',
     font: "Poppins-Medium"
