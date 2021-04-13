@@ -1,9 +1,11 @@
+import { Card } from 'antd'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
-import { Button } from 'src/components/buttons/Button'
 import HeartIcon from 'src/components/icons/heart.svg'
 import { Box } from 'src/components/layout/Box'
+import { ScreenContentFrame } from 'src/components/layout/ScreenContentFrame'
+import { Color } from 'src/styles/Color'
 import { Font } from 'src/styles/fonts'
 import { mq } from 'src/styles/mediaQueries'
 import { Stylesheet } from 'src/styles/types'
@@ -19,8 +21,8 @@ interface ListProps {
 export function MarketList() {
   const navigate = useNavigate()
 
-  const onClickCreateNew = () => {
-    navigate('/store-detail')
+  const onClick = (_storeId: any) => {
+    navigate('/store-detail/{_storeId}')
   }
 
   const marketplace = 'Venice High Flea Market'
@@ -65,29 +67,37 @@ export function MarketList() {
   }, [])
 
   const ListComponent = (list: ListProps) => (
-    <Box css={style.listComponent}>
+    <Card bordered={false} bodyStyle={style.listComponent} onClick={() => onClick(list.id)}>
       <img src={list.mainpic} css={style.mainpic} />
       <div className="textBox" style={style.storeProfile}>
-        <h2 css={style.h1}>{list.name}</h2>
-        <Button styles={style.categ}>{list.categ}</Button>
+        <div>
+          <h2 css={style.h2}>{list.name}</h2>
+        </div>
+        <div css={style.categ}>{list.categ}</div>
       </div>
-      <div className="clap" css={{ position: 'absolute', right: '1em', padding: '1.5em 0' }}>
+      <div
+        className="clap"
+        css={{ display: 'inline', position: 'absolute', right: '1em', padding: '0.2em 0' }}
+      >
         <img src={HeartIcon} />
+        <h5 css={{ textAlign: 'center' }}>{list.clap}</h5>
       </div>
-    </Box>
+    </Card>
   )
 
   return (
-    <Box direction="column" justify="center">
-      <Box justify="start" align="start">
-        <h1 css={style.h1}>{marketplace}</h1>
+    <ScreenContentFrame css={{ padding: '1.0em' }}>
+      <Box direction="column" justify="center">
+        <Box justify="start" align="start">
+          <h1 css={style.h1}>{marketplace}</h1>
+        </Box>
+        <Box direction="column" css={style.listContainer}>
+          {markets.map((market) => (
+            <ListComponent key={market.id} {...market} />
+          ))}
+        </Box>
       </Box>
-      <Box direction="column" css={style.listContainer}>
-        {markets.map((market) => (
-          <ListComponent key={market.id} {...market} />
-        ))}
-      </Box>
-    </Box>
+    </ScreenContentFrame>
   )
 }
 
@@ -104,29 +114,47 @@ const style: Stylesheet = {
       marginTop: '0.5em',
     },
   },
+  h2: {
+    ...Font.h2,
+    ...Font.bold,
+    fontSize: '1.4em',
+    fontWeight: '600',
+    margin: '0em 0.5em 0.5em 0.5em',
+    textAlign: 'start',
+    [mq[768]]: {
+      fontSize: '1.5em',
+      marginTop: '0.5em',
+    },
+  },
   listContainer: {
     marginTop: '1.5em',
     display: 'block',
+    width: '100%',
   },
   listComponent: {
-    width: '100%',
-    padding: '1em',
-    height: '8em',
-    display: 'flex',
+    padding: '1em 0em',
+    height: '7.5em',
+    borderBottom: `2.5px solid ${Color.borderLight}`,
   },
   mainpic: {
-    margin: 'auto 0',
+    display: 'inline-block',
     width: '5em',
     height: '5em',
-    borderRadius: 5,
+    verticalAlign: 'top',
+    borderRadius: 10,
   },
   storeProfile: {
-    margin: '1em',
+    display: 'inline-block',
   },
   categ: {
-    height: '1.5em',
-    minWidth: '10em',
-    padding: '0 auto',
+    display: 'inline-block',
+    justifyContent: 'center',
+    height: '1.7em',
+    padding: '0 1em',
+    fontWeight: '400',
+    marginLeft: '0.7em',
+    color: 'white',
+    background: 'rgba(47, 207, 87)',
     borderRadius: 50,
   },
 }

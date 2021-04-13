@@ -1,8 +1,6 @@
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
-import axios from 'axios';
 import { useState } from 'react';
-
 
 function getBase64(file:any) {
   return new Promise((resolve, reject) => {
@@ -25,7 +23,7 @@ function beforeUpload(file: any) {
   return isJpgOrPng && isLt2M;
 }
 
-export default function Uploading (opt:any, setForm:any){
+export default function Uploading (opt:any, setStore:any){
   const [loading, setLoading]=useState(false);
   const [imageUrl, setImageUrl]=useState('' as any);
 
@@ -36,31 +34,38 @@ export default function Uploading (opt:any, setForm:any){
     }
 
     if (info.file.status === 'done') {
-      // Get this url from response in real world.
       setImageUrl(getBase64(info.file.originFileObj));
       setLoading(false);
     }
     switch(opt){
       case "mainpic":
-        setForm({mainpic:imageUrl});
+        setStore({mainpic:imageUrl});
+        console.log(imageUrl)
+        break;
       case "pic1":
-        setForm({pic1:imageUrl});
+        setStore({pic1:imageUrl});
+        console.log(imageUrl)
+        break;
       case "pic2":
-        setForm({pic2:imageUrl});
+        setStore({pic2:imageUrl});
+        console.log(imageUrl);
+        break;
       case "pic3":
-        setForm({pic3:imageUrl});
+        setStore({pic3:imageUrl});
+        console.log(imageUrl)
+        break;
     }
-    let formData = new FormData();
-      formData.append("file", imageUrl)
-      //save the Image we chose inside the Node Server 
-      axios.post('/api/market/uploadImage', formData)
-          .then(response => {
-                if (response.data.success) {
-                  alert('Product Successfully Uploaded')
-                  } else {
-                      alert('Failed to upload Product')
-                  }
-          })
+    // let formData = new FormData();
+    //   formData.append("file", imageUrl)
+    //   //save the Image we chose inside the Node Server 
+    //   axios.post('/api/market/uploadImage', formData)
+    //       .then(response => {
+    //             if (response.data.success) {
+    //               alert('Product Successfully Uploaded')
+    //               } else {
+    //                   alert('Failed to upload Product')
+    //               }
+    //       })
 
   };
   const uploadButton = (
@@ -80,7 +85,7 @@ export default function Uploading (opt:any, setForm:any){
       beforeUpload={beforeUpload}
       onChange={handleChange}
     >
-      {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+      {imageUrl ? <img src={imageUrl} alt="" style={{ width: '100%' }} /> : uploadButton}
 
     </Upload>
     

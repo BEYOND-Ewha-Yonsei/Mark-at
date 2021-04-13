@@ -9,7 +9,7 @@ import { EnterPincodeScreen } from 'src/features/pincode/EnterPincodeScreen'
 import { isAccountUnlocked } from 'src/features/pincode/pincode'
 import { isWalletInStorage } from 'src/features/wallet/storage'
 
-export function HomeNavigator() {
+export function HomeNavigator(isLoggedIn: any) {
   const { address, type, isUnlocked } = useSelector((s: RootState) => s.wallet)
 
   // TODO necessary until auto-timeout unlock is fully implemented
@@ -22,7 +22,7 @@ export function HomeNavigator() {
     (isUnlocked && (isAccountUnlocked() || type === SignerType.Ledger)) || !!config.defaultAccount
   if (address && unlocked) {
     return (
-      <ScreenFrame>
+      <ScreenFrame >
         <Outlet />
       </ScreenFrame>
     )

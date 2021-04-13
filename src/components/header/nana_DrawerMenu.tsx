@@ -21,16 +21,20 @@ import { Stylesheet } from 'src/styles/types'
 import { logger } from 'src/utils/logger'
 import { chunk } from 'src/utils/string'
 
+
 export const DrawerMenu = () => {
   const [isOpen, setOpen] = useState(false)
-
   const onTouchEnd = () => {
     setOpen(false)
   }
   const onSwitch = () => {
     setOpen(!isOpen)
   }
-
+  // const loggedin = (
+  //   <div>
+  //     {isLoggedIn ? <button>celler login</button>  : <button>modify market</button> }
+  //   </div>
+  // );
   const isMobile = useIsMobile()
   const identiconSize = isMobile ? 66 : 72
 
@@ -54,6 +58,7 @@ export const DrawerMenu = () => {
       case 'marketregister':
         navigate('/market-register')
         break
+        
       default:
         logger.info('Unknown Menu Item Clicked: ', key)
         break
@@ -122,6 +127,7 @@ export const DrawerMenu = () => {
                   />
                   <span>CELO</span>
                 </Box>
+                    {/* {loggedin} */}
               </div>
             </div>
             <div>

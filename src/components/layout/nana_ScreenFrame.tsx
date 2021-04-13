@@ -22,11 +22,12 @@ const SCREENS_WITHOUT_FEED: Record<string, boolean> = {
   '/settings': true,
 }
 
-export function ScreenFrame(props: PropsWithChildren<any>) {
+export function ScreenFrame( props: PropsWithChildren<any>) {
   const navigate = useNavigate()
   const frameState = useFrameState()
 
   return (
+    // <HeaderFrame isLoggedIn={isLoggedIn}>
     <HeaderFrame>
       {frameState === FrameState.DesktopHome && (
         <DesktopHome isWalletEmpty={false}>{props.children}</DesktopHome>
@@ -127,6 +128,7 @@ function MobileHome(props: PropsWithChildren<any>) {
   return (
     <Box direction="column" styles={style.contentContainer}>
       <HomeScreenWarnings />
+      <div>{props.children}</div>
     </Box>
   )
 }
