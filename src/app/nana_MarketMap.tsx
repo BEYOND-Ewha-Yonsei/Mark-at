@@ -40,17 +40,16 @@ export function MarketMap() {
 
   return (
       <Box direction="column" styles={style.formContent}>
-        <Box direction="column" align="center" margin="3em 1em 1em 0">
+        <Box direction="column" align="center" margin="3em 0 0 0">
           <Input
             size="large"
             name="search"
             placeholder="Pick your market"
-            style={{ padding: '0 0.3em', border: 'none' }}
             prefix={<SearchOutlined />}
           />
         </Box>
         {/* <SimpleSlider /> */}
-        <Box direction="column" align="center"margin="20em 0 0 0">
+        <Box direction="column" align="center">
           <Button onClick={onClickViewList} styles={style.button}>
             View the list of this markets
           </Button>
@@ -62,9 +61,6 @@ export function MarketMap() {
 
 const style: Stylesheet = {
   formContent: {
-    [mq[480]]: {
-      marginLeft: '-1.3em',
-    },
     minHeight: '100vh',
     backgroundImage: `url("static/maps.jpg")`,
   },
@@ -82,9 +78,7 @@ const style: Stylesheet = {
   // },
   button: {
     position: 'absolute',
-    bottom: '5em',
-    // left: '50%',
-    // marginLeft: '-8em',
+    bottom: '8em',
     width: '18em',
     minWidth: '15em',
     height: '2.8em',
