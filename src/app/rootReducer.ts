@@ -4,8 +4,8 @@ import { persistedFeedReducer } from 'src/features/feed/feedSlice'
 import { feeReducer } from 'src/features/fees/feeSlice'
 import { governanceReducer } from 'src/features/governance/governanceSlice'
 import { lockReducer } from 'src/features/lock/lockSlice'
+import { persistLoginReducer } from 'src/features/login/loginSlice'
 import { persistedSettingsReducer } from 'src/features/settings/settingsSlice'
-//import user from 'src/features/signUp/user_reducer'
 import { tokenPriceReducer } from 'src/features/tokenPrice/tokenPriceSlice'
 import { txFlowReducer } from 'src/features/txFlow/txFlowSlice'
 import { persistedValidatorsReducer } from 'src/features/validators/validatorsSlice'
@@ -24,6 +24,7 @@ export const rootReducer = combineReducers({
   settings: persistedSettingsReducer,
   txFlow: txFlowReducer,
   saga: monitoredSagaReducers,
+  user: persistLoginReducer,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

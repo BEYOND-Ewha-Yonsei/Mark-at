@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { isSignerSet } from 'src/blockchain/signer'
 import { ScreenContentFrame } from 'src/components/layout/ScreenContentFrame'
@@ -8,7 +8,6 @@ import { Font } from 'src/styles/fonts'
 export function RegisterScreen() {
   // @ts-ignore
   const navigate = useNavigate()
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
     // Wallet must have been created or imported before reaching here
     if (!isSignerSet()) {
@@ -22,7 +21,7 @@ export function RegisterScreen() {
   return (
     <ScreenContentFrame onClose={onClickBack}>
       <h1 css={Font.h1Green}>Register as Seller</h1>
-      {!isLoggedIn && <RegisterForm {...{ setIsLoggedIn }} />}
+      <RegisterForm />
     </ScreenContentFrame>
   )
 }

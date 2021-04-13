@@ -3,18 +3,20 @@ import { Input } from 'antd';
 import axios from "axios";
 import * as React from "react";
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import seller from 'src/components/icons/forsellers.svg';
 import Logo from 'src/components/icons/Mark-at_logo.svg';
 import { Box } from 'src/components/layout/Box';
+import { userActions } from 'src/features/login/login';
 import { mq } from 'src/styles/mediaQueries';
 import { Stylesheet } from 'src/styles/types';
 
-export function LoginForm( setIsLoggedIn: any, setUserId: any) {
-  console.log(setIsLoggedIn)
-  
+
+export function LoginForm() {
   const [form, setForm] = useState({ id: "", pw: "" });
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const handleFormChange = (e:any) => {
     setForm({
       ...form,
@@ -25,7 +27,6 @@ export function LoginForm( setIsLoggedIn: any, setUserId: any) {
     setForm({ id: "", pw: "" });
   };
   const validCheck = () => {
-
     if (form.id.length === 0 || form.pw.length === 0) {
       alert("fill every section!");
       return false;
@@ -33,25 +34,25 @@ export function LoginForm( setIsLoggedIn: any, setUserId: any) {
     return true;
   };
   const handleSubmit = () => {
+    dispatch(userActions.trigger(form.id))
     console.log(form);
     if (!validCheck) return;
-    setUserId({userId: form.id})
     axios
       .post(`http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/server/login/`,form )
       .then(function (response) {
         console.log(response.data.message);
         if (response.data.message == "1"){
           alert("login success!");
-          setIsLoggedIn(true);
+          console.log(form.id);
           navigate('/')}
         else if(response.data.message == "0"){alert("login fail!");}
-        // else alert("response error");
       })
       .catch(function (error) {
         alert("response error");
         resetForm();
         console.log(error);
       });
+
   };
 
   return (
@@ -89,7 +90,7 @@ export function LoginForm( setIsLoggedIn: any, setUserId: any) {
           </Box>
           <Box direction="column" align="center">
           <button
-              style={style.btn}
+              style={style.btn2}
               onClick={()=>{navigate('/seller-register')}}>Sign Up
           </button>
         </Box>
@@ -120,6 +121,19 @@ const style: Stylesheet = {
     borderRadius: 5,
     fontWeight: 500,
     color: 'rgba(255,255,255)',
+    font: "Poppins-Medium"
+  },
+  btn2: {
+    width: '12em',
+    height:'2em',
+    marginTop: '1.5em',
+    background: 'rgba(255,255,255)',
+    outline: 'none',
+    border: 2,
+    bordercolor:'linear-gradient(0.25turn,rgba(247,214,55),rgba(47,207,87))',
+    borderRadius: 5,
+    fontWeight: 500,
+    color: 'linear-gradient(0.25turn,rgba(247,214,55),rgba(47,207,87))',
     font: "Poppins-Medium"
   },
 

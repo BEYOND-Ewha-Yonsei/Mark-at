@@ -30,16 +30,13 @@ export const DrawerMenu = () => {
   const onSwitch = () => {
     setOpen(!isOpen)
   }
-  // const loggedin = (
-  //   <div>
-  //     {isLoggedIn ? <button>celler login</button>  : <button>modify market</button> }
-  //   </div>
-  // );
+
   const isMobile = useIsMobile()
   const identiconSize = isMobile ? 66 : 72
 
   const balances = useSelector((s: RootState) => s.wallet.balances, shallowEqual)
-
+  const isLoggedIn = useSelector((s: RootState) => s.user.isLoggedIn)
+  console.log(isLoggedIn)
   const address = useWalletAddress()
   const addressSections = chunk<string>(utils.getAddress(address).substring(2).toUpperCase(), 4)
 
@@ -127,7 +124,9 @@ export const DrawerMenu = () => {
                   />
                   <span>CELO</span>
                 </Box>
-                    {/* {loggedin} */}
+                {isLoggedIn ? 
+                <button style={style.btn} onClick={()=>navigate('/market-register')}><span style={style.grad}>modify market</span></button>  : 
+                <button style={style.btn} onClick={()=>navigate('/seller-login')}><span style={style.grad}>seller login</span></button> }
               </div>
             </div>
             <div>
@@ -261,7 +260,6 @@ const style: Stylesheet = {
       margin: '0 1.6em',
     },
   },
-
   menuItem: {
     display: 'flex',
     flexDirection: 'row',
@@ -282,5 +280,19 @@ const style: Stylesheet = {
   submenu: {
     paddingLeft: '5em',
     color: 'gray',
+  },
+  btn: {
+    height:'2em',
+    marginTop: '1em',
+    background: 'rgba(255,255,255)',
+    outline: 'none',
+    border: 'none',
+    borderRadius: '12px',
+    font: "Poppins-Medium"
+  },
+  grad: {
+    background: 'linear-gradient(0.25turn,rgba(247,214,55),rgba(47,207,87))',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
   },
 }

@@ -6,102 +6,105 @@ import {
   fetchExchangeRateActions,
   fetchExchangeRateReducer,
   fetchExchangeRateSaga,
-  fetchExchangeRateSagaName,
+  fetchExchangeRateSagaName
 } from 'src/features/exchange/exchangeRate'
 import {
   exchangeTokenActions,
   exchangeTokenReducer,
   exchangeTokenSaga,
-  exchangeTokenSagaName,
+  exchangeTokenSagaName
 } from 'src/features/exchange/exchangeToken'
 import {
   feedFetchPoller,
   fetchFeedActions,
   fetchFeedReducer,
   fetchFeedSaga,
-  fetchFeedSagaName,
+  fetchFeedSagaName
 } from 'src/features/feed/fetchFeed'
 import {
   estimateFeeActions,
   estimateFeeReducer,
   estimateFeeSaga,
-  estimateFeeSagaName,
+  estimateFeeSagaName
 } from 'src/features/fees/estimateFee'
 import {
   fetchProposalsActions,
   fetchProposalsReducer,
   fetchProposalsSaga,
-  fetchProposalsSagaName,
+  fetchProposalsSagaName
 } from 'src/features/governance/fetchProposals'
 import {
   governanceVoteActions,
   governanceVoteReducer,
   governanceVoteSaga,
-  governanceVoteSagaName,
+  governanceVoteSagaName
 } from 'src/features/governance/governanceVote'
 import {
   importLedgerWalletActions,
   importLedgerWalletReducer,
   importLedgerWalletSaga,
-  importLedgerWalletSagaName,
+  importLedgerWalletSagaName
 } from 'src/features/ledger/importWallet'
 import {
   lockTokenActions,
   lockTokenReducer,
   lockTokenSaga,
-  lockTokenSagaName,
+  lockTokenSagaName
 } from 'src/features/lock/lockToken'
+import {
+  userActions, userReducer, userSaga, userSagaName
+} from 'src/features/login/login'
+import { resetActions, resetReducer, resetSaga, resetSagaName } from 'src/features/login/userreset'
 import {
   pincodeActions,
   pincodeReducer,
   pincodeSaga,
-  pincodeSagaName,
+  pincodeSagaName
 } from 'src/features/pincode/pincode'
 import {
   sendTokenActions,
   sendTokenReducer,
   sendTokenSaga,
-  sendTokenSagaName,
+  sendTokenSagaName
 } from 'src/features/send/sendToken'
 import {
   fetchTokenPriceActions,
   fetchTokenPriceReducer,
   fetchTokenPriceSaga,
-  fetchTokenPriceSagaName,
+  fetchTokenPriceSagaName
 } from 'src/features/tokenPrice/fetchPrices'
 import {
   fetchValidatorsActions,
   fetchValidatorsReducer,
   fetchValidatorsSaga,
-  fetchValidatorsSagaName,
+  fetchValidatorsSagaName
 } from 'src/features/validators/fetchValidators'
 import {
   stakeTokenActions,
   stakeTokenReducer,
   stakeTokenSaga,
-  stakeTokenSagaName,
+  stakeTokenSagaName
 } from 'src/features/validators/stakeToken'
 import {
   createWalletActions,
   createWalletReducer,
   createWalletSaga,
-  createWalletSagaName,
+  createWalletSagaName
 } from 'src/features/wallet/createWallet'
 import {
   fetchBalancesActions,
   fetchBalancesReducer,
   fetchBalancesSaga,
-  fetchBalancesSagaName,
+  fetchBalancesSagaName
 } from 'src/features/wallet/fetchBalances'
 import {
   importDefaultAccount,
   importWalletActions,
   importWalletReducer,
   importWalletSaga,
-  importWalletSagaName,
+  importWalletSagaName
 } from 'src/features/wallet/importWallet'
 import { SagaActions, SagaState } from 'src/utils/saga'
-
 function* init() {
   yield call(connectToProvider)
   yield call(importDefaultAccount)
@@ -198,6 +201,16 @@ export const monitoredSagas: {
     saga: logoutSaga,
     reducer: logoutReducer,
     actions: logoutActions,
+  },
+  [userSagaName]:{
+    saga: userSaga,
+    reducer: userReducer,
+    actions: userActions,
+  },
+  [resetSagaName]:{
+    saga: resetSaga,
+    reducer: resetReducer,
+    actions: resetActions,
   },
 }
 

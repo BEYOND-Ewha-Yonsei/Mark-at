@@ -69,3 +69,4 @@ export function isValidDerivationPath(derivationPath: string) {
   // TODO validate each path segment individually here
   return split[0] === 'm' && split.length === 6
 }
+

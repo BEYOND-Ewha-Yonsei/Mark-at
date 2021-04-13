@@ -1,15 +1,16 @@
 import axios from "axios";
 import * as React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { Button } from 'src/components/buttons/Button';
 import { Box } from 'src/components/layout/Box';
 import { Color } from 'src/styles/Color';
 import { mq } from 'src/styles/mediaQueries';
 import { Stylesheet } from 'src/styles/types';
 
-export function RegisterForm( setIsLoggedIn: any) {
+export function RegisterForm() {
   const [form, setForm] = useState({ id: "", pw: "",email:"",nickname:"" });
-
+  const navigate = useNavigate()
   const handleFormChange = (e:any) => {
     setForm({
       ...form,
@@ -33,8 +34,8 @@ export function RegisterForm( setIsLoggedIn: any) {
       .post(`http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/server/create/`, form)
       .then(function (response) {
         console.log(response);
-        alert("sign up success!");
-        setIsLoggedIn(true);
+        alert("Sign up success! Please login again");
+        navigate('/seller-login')
       })
       .catch(function (error) {
         resetForm();

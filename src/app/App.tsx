@@ -1,8 +1,10 @@
 import * as React from 'react'
-import { PropsWithChildren, useState } from 'react'
+import { PropsWithChildren } from 'react'
+import { useDispatch } from 'react-redux'
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import { BadBrowserScreen } from 'src/app/BadBrowserScreen'
 import { ErrorBoundary } from 'src/app/FailScreen'
+import MarketInfo from 'src/app/Marketinfo'
 import MarketForm from 'src/app/nana_MarketForm'
 import { MarketList } from 'src/app/nana_MarketList'
 import { MarketMap } from 'src/app/nana_MarketMap'
@@ -10,6 +12,7 @@ import { NFTpage } from 'src/app/nana_NFTpage'
 import { NFTpaint } from 'src/app/nana_NFTpaint'
 import { NotFoundScreen } from 'src/app/NotFoundScreen'
 import { useSplashScreen } from 'src/app/splash'
+import { StoreDetailPage } from 'src/app/StoreDetailPage'
 import { UpdateBanner } from 'src/app/UpdateBanner'
 import { ModalProvider } from 'src/components/modal/modalContext'
 import { config } from 'src/config'
@@ -20,6 +23,7 @@ import { HomeNavigator } from 'src/features/home/HomeNavigator'
 import { HomeScreen } from 'src/features/home/maHomeScreen'
 import { LoginForm } from 'src/features/login/loginForm'
 import { RegisterScreen } from 'src/features/login/registerScreen'
+import { resetActions } from 'src/features/login/userreset'
 import { ImportChoiceScreen } from 'src/features/onboarding/import/ImportChoiceScreen'
 import { ImportWalletScreen } from 'src/features/onboarding/import/ImportWalletScreen'
 import { LedgerImportScreen } from 'src/features/onboarding/import/LedgerImportScreen'
@@ -43,8 +47,8 @@ function Router(props: PropsWithChildren<any>) {
   )
 }
 export const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
-  const [userId, setUserId] = useState<string>("");
+  const dispatch = useDispatch()
+  dispatch(resetActions.trigger())
   const showSplash = useSplashScreen()
   const isBrowserSupported = useBrowserFeatureChecks()
 
@@ -59,7 +63,7 @@ export const App = () => {
         <ModalProvider>
           <UpdateBanner />
           <Routes>
-            <Route path="/" element={<HomeNavigator isLoggedIn={isLoggedIn}/>}>
+            <Route path="/" element={<HomeNavigator />}>
               <Route path="/" element={<HomeScreen />} />
               <Route path="tx" element={<TransactionReview />} />
               <Route path="send" element={<SendFormScreen />} />
@@ -71,14 +75,14 @@ export const App = () => {
               
               <Route path="NFTpage" element={<NFTpage />} />
               <Route path="NFTpaint" element={<NFTpaint />} />
-              {/* <Route path="store-detail/:storeId" component ={StoreDetailPage} /> */}
-              <Route path="market-register" element={<MarketForm userId={userId}/>} />
+              <Route path="store-detail/1" element ={<MarketInfo/>} /> 
+              <Route path="market-register" element={<MarketForm />} />
+              <Route path="test" element={<MarketInfo/>} />
+              <Route path="store" element={<StoreDetailPage/>} />
               <Route path="market-map" element={<MarketMap />} />
               <Route path="bigmarket/1" element={<MarketList />} />
               <Route path="seller-register" element={<RegisterScreen />} />
-              <Route
-                path="seller-login"
-                element={<LoginForm setIsLoggedIn={setIsLoggedIn} setUserId={setUserId}/>}
+              <Route path="seller-login" element={<LoginForm/>}
               />
             </Route>
 

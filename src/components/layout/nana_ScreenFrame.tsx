@@ -27,7 +27,7 @@ export function ScreenFrame( props: PropsWithChildren<any>) {
   const frameState = useFrameState()
 
   return (
-    // <HeaderFrame isLoggedIn={isLoggedIn}>
+  
     <HeaderFrame>
       {frameState === FrameState.DesktopHome && (
         <DesktopHome isWalletEmpty={false}>{props.children}</DesktopHome>
