@@ -22,32 +22,59 @@ export function MarketList() {
   const navigate = useNavigate()
 
   const onClick = (_storeId: any) => {
-    navigate('/store/'+`${_storeId}`)
+    navigate('/store-detail/' + `${_storeId}`)
   }
 
   const marketplace = 'Venice High Flea Market'
 
   const markets = [
     {
-      id: 1,
-      name: 'Holliday House',
-      mainpic: '../static/market1.jpg',
-      categ: '#kitchen',
-      clap: 1,
+      id: 17,
+      name: 'groceryus',
+      mainpic:
+        'http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/%E1%84%85%E1%85%A9%E1%84%80%E1%85%A9_lLB4LZi.png',
+      categ: 'Groceries',
+      clap: 91,
     },
     {
-      id: 2,
-      name: 'Home Run Park',
-      mainpic: '../static/nft/puppy.png',
-      categ: '#sporting',
-      clap: 0,
+      id: 19,
+      name: 'Toymonster',
+      mainpic:
+        'http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/%E1%84%85%E1%85%A9%E1%84%80%E1%85%A9_MQkiPLa.png',
+      categ: 'Child/Babycare',
+      clap: 89,
     },
     {
-      id: 3,
-      name: 'Radio&Camera ground',
-      mainpic: '../static/nft/cat.png',
-      categ: '#electronics',
-      clap: 2,
+      id: 9,
+      name: 'FloorChirp',
+      mainpic:
+        'http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/FloorChirp_1.jpg',
+      categ: 'Fabric',
+      clap: 131,
+    },
+    {
+      id: 35,
+      name: 'Dolls around the world',
+      mainpic:
+        'http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/%E1%84%80%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B71_XLRMGUY.jpg',
+      categ: 'Toys and games',
+      clap: 96,
+    },
+    {
+      id: 6,
+      name: 'Oldies Trove Store',
+      mainpic:
+        'http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/Oldies_Trove_Store_2_XfhDDGN.jpg',
+      categ: 'Antiques',
+      clap: 79,
+    },
+    {
+      id: 24,
+      name: 'Eden&lawn',
+      mainpic:
+        'http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/%E1%84%85%E1%85%A9%E1%84%80%E1%85%A9_4GrbU6e.png',
+      categ: 'Home&Garden',
+      clap: 79,
     },
   ]
 
@@ -73,7 +100,7 @@ export function MarketList() {
         <div>
           <h2 css={style.h2}>{list.name}</h2>
         </div>
-        <div css={style.categ}>{list.categ}</div>
+        <div css={style.categ}>#{list.categ}</div>
       </div>
       <div
         className="clap"
@@ -130,6 +157,7 @@ const style: Stylesheet = {
     marginTop: '1.5em',
     display: 'block',
     width: '100%',
+    backgound: `${Color.borderLight}`,
   },
   listComponent: {
     padding: '1em 0em',
