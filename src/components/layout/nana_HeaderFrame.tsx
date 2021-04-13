@@ -10,7 +10,7 @@ export function HeaderFrame(props: PropsWithChildren<unknown>) {
     <Box direction="column" styles={style.container}>
       <Header />
       <div css={style.content}>{props.children}</div>
-        <button style={style.floating} onClick={()=>navigate('/seller-login')} >
+        <button style={style.floating} onClick={()=>navigate('/send')} >
         </button>
     </Box>
   )

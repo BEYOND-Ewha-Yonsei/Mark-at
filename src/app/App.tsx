@@ -18,6 +18,7 @@ import MarketInfo3 from 'src/app/storePages/store3'
 import MarketInfo4 from 'src/app/storePages/store4'
 import MarketInfo5 from 'src/app/storePages/store5'
 import { UpdateBanner } from 'src/app/UpdateBanner'
+import Uploading from 'src/app/utils/Uploading'
 import { ModalProvider } from 'src/components/modal/modalContext'
 import { config } from 'src/config'
 import { ExchangeConfirmationScreen } from 'src/features/exchange/ExchangeConfirmationScreen'
@@ -83,6 +84,7 @@ export const App = () => {
               <Route path="NFTpaint" element={<NFTpaint />} />
 
               <Route path="market-register" element={<MarketForm />} />
+              <Route path="test" element={<Uploading />} />
 
               <Route path="store/1" element={<MarketInfo1/>} />
               <Route path="store/2" element={<MarketInfo2/>} />
@@ -96,6 +98,7 @@ export const App = () => {
               <Route path="market-map" element={<MarketMap />} />
               <Route path="bigmarket/1" element={<MarketList />} />
               <Route path="seller-register" element={<RegisterScreen />} />
+              
               <Route path="seller-login" element={<LoginForm/>}
               />
             </Route>
