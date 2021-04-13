@@ -8,42 +8,81 @@ import { Stylesheet } from 'src/styles/types'
 export function NFTpage() {
   const isMobile = useIsMobile()
   const navigate = useNavigate()
-
   const onClickMove = () => {
     navigate('/NFTpaint')
   }
+  //*~~*~*~*~**~*~*~*~*~*~~*code for get Tokens*~*~*~*~*~*~*
+  // const test = getContract(CeloContract.MarkAtToken)
+  // const address = useWalletAddress()
+  // const [nfts, setNfts] = useState<string[]>([])
 
-  const nfts = [
-    {
-      tokenId: 1,
-      imageUrl: '../static/nft/bigdog.png',
-    },
-    {
-      tokenId: 2,
-      imageUrl: '../static/nft/puppy.png',
-    },
-    {
-      tokenId: 3,
-      imageUrl: '../static/nft/cat.png',
-    },
+  // useEffect(() => {
+  //   console.log('before fetch: ', nfts)
+  //   fetch()
+  // }, [])
+  // console.log('after fetch: ', nfts)
+  // console.log('zero: ', nfts[0])
+
+  // async function fetch() {
+  //   let tempnfts: string[] = []
+
+  //   await getBalance().then(function (data: any) {
+  //     const balance = parseInt(data._hex, 16)
+  //     console.log('balance: ', balance)
+
+  //     for (var i = 0; i < balance; i++) {
+  //       getData(i)
+  //         .then(function (data: any) {
+  //           tempnfts.push(data)
+  //         })
+  //         .catch(function (err: any) {
+  //           console.log(err)
+  //         })
+  //     }
+  //     console.log('최종: ', tempnfts)
+  //     setNfts(tempnfts)
+  //   })
+  // }
+
+  // function getBalance() {
+  //   return test.balanceOf(address)
+  // }
+
+  // function getData(index: number) {
+  //   return test.tokenURI(index)
+  // }
+  const staticNfts = [
+    'https://ipfs.io/ipfs/QmQxtsnSTtWhFN8cP3hg2jZaTcCBxNFK3gNg7zcFUWtrK7',
+    'https://ipfs.io/ipfs/QmQPdMLW9Lu1ZEZT1sKF58zjtgt5ydeKiP4aW6LqM9rShB',
+    'https://ipfs.io/ipfs/Qmdye38FXH1RgN1WFScqayD8S51Ndf97uCa7QChUuNa9EA',
+    'https://ipfs.io/ipfs/QmRMBx8yPwdq1TpTXMdwYcfeXsMkNinFsRtJ3qQogizXWC',
+    'https://ipfs.io/ipfs/QmdYMMKKWJP1D4AHiPe7wg9GXtqcttEQAiz1HiVSGAKWs2',
+    'https://ipfs.io/ipfs/QmfBLyBYgcpXdrwNGKfzPMnaUidW8CizrvgignDfAoV1Gf',
+    'https://ipfs.io/ipfs/QmZyyYRr2gV87MoCwQe2rHiavzvsN4xz1rmeoRfaax1ijK',
+    'https://ipfs.io/ipfs/QmcWpkoXKYarxXof4qByuPmngcsH9VTDSh54WcQdjwHHbd',
   ]
-
   return (
-    <Box direction="column" justify="start">
+    <>
       <Box direction="column" justify="start" align="center">
         <h1 css={style.h1}>{`My ${isMobile ? '' : 'simple '}NFT`}</h1>
         <Button onClick={onClickMove} styles={style.buttonContainer}>
           Go to My NFT Paint
         </Button>
       </Box>
+
       <Box direction="row" justify="center" align="center">
-        {nfts.map((nft) => (
-          <div key={nft.tokenId} css={style.nftContainer}>
-            <img src={nft.imageUrl} css={style.nfts} />
+        {/* {nfts.map((nft, i) => (
+          <div key={i} css={style.nftContainer}>
+            <img src={nft} css={style.nfts} />
+          </div>
+        ))} */}
+        {staticNfts.map((nft, index) => (
+          <div key={index} css={style.nftContainer}>
+            <img src={nft} />
           </div>
         ))}
       </Box>
-    </Box>
+    </>
   )
 }
 
