@@ -22,34 +22,53 @@ export function NFTpage() {
   let testNfts: string[] = []
 
   useEffect(() => {
-    console.log('before fetch: ', nfts)
-    fetch().then((res) => (testNfts = res))
+    // console.log('before fetch: ', nfts)
+    // async function fetch() {
+    //   let tempnfts: string[] = []
+
+    //   await getBalance().then(function (data: any) {
+    //     const balance = parseInt(data._hex, 16)
+    //     console.log('balance: ', balance)
+
+    //     for (let i = 0; i < balance; i++) {
+    //       getData(i)
+    //         .then(function (data: any) {
+    //           tempnfts.push(data)
+    //         })
+    //         .catch(function (err: any) {
+    //           console.log(err)
+    //         })
+    //     }
+    //     console.log('최종: ', tempnfts)
+    //   })
+    //   setNfts(tempnfts)
+    // }
+    // fetch()
+
+    const staticNfts = [
+      'https://ipfs.io/ipfs/QmQxtsnSTtWhFN8cP3hg2jZaTcCBxNFK3gNg7zcFUWtrK7?filename=fp1.png',
+      'https://ipfs.io/ipfs/QmQPdMLW9Lu1ZEZT1sKF58zjtgt5ydeKiP4aW6LqM9rShB?filename=fp2.png',
+      'https://ipfs.io/ipfs/Qmdye38FXH1RgN1WFScqayD8S51Ndf97uCa7QChUuNa9EA?filename=fp3.png',
+      'https://ipfs.io/ipfs/QmRMBx8yPwdq1TpTXMdwYcfeXsMkNinFsRtJ3qQogizXWC?filename=fp4.png',
+      'https://ipfs.io/ipfs/QmdYMMKKWJP1D4AHiPe7wg9GXtqcttEQAiz1HiVSGAKWs2?filename=fp5.png',
+      'https://ipfs.io/ipfs/QmfBLyBYgcpXdrwNGKfzPMnaUidW8CizrvgignDfAoV1Gf?filename=fp6.png',
+      'https://ipfs.io/ipfs/QmZyyYRr2gV87MoCwQe2rHiavzvsN4xz1rmeoRfaax1ijK?filename=fp7.png',
+      'https://ipfs.io/ipfs/QmcWpkoXKYarxXof4qByuPmngcsH9VTDSh54WcQdjwHHbd?filename=fp8.png',
+    ]
+
+    async function showNfts() {
+      await getBalance().then(function (data: any) {
+        const balance = parseInt(data._hex, 16)
+        setNfts(staticNfts.splice(8 - balance))
+      })
+    }
+    showNfts()
+    console.log(staticNfts)
   }, [])
-  console.log('after fetch: ', nfts)
-  console.log('zero: ', nfts[0])
-  console.log(testNfts)
+  // console.log('after fetch: ', nfts)
+  // console.log('zero: ', nfts[0])
 
-  async function fetch() {
-    let tempnfts: string[] = []
-
-    await getBalance().then(function (data: any) {
-      const balance = parseInt(data._hex, 16)
-      console.log('balance: ', balance)
-
-      for (var i = 0; i < balance; i++) {
-        getData(i)
-          .then(function (data: any) {
-            tempnfts.push(data)
-          })
-          .catch(function (err: any) {
-            console.log(err)
-          })
-      }
-      console.log('최종: ', tempnfts)
-    })
-    return setNfts(tempnfts)
-  }
-
+  //  console.log(testNfts)
   function getBalance() {
     return test.balanceOf(address)
   }
@@ -57,16 +76,7 @@ export function NFTpage() {
   function getData(index: number) {
     return test.tokenURI(index)
   }
-  const staticNfts = [
-    'https://ipfs.io/ipfs/QmQxtsnSTtWhFN8cP3hg2jZaTcCBxNFK3gNg7zcFUWtrK7?filename=fp1.png',
-    'https://ipfs.io/ipfs/QmQPdMLW9Lu1ZEZT1sKF58zjtgt5ydeKiP4aW6LqM9rShB?filename=fp2.png',
-    'https://ipfs.io/ipfs/Qmdye38FXH1RgN1WFScqayD8S51Ndf97uCa7QChUuNa9EA?filename=fp3.png',
-    'https://ipfs.io/ipfs/QmRMBx8yPwdq1TpTXMdwYcfeXsMkNinFsRtJ3qQogizXWC?filename=fp4.png',
-    'https://ipfs.io/ipfs/QmdYMMKKWJP1D4AHiPe7wg9GXtqcttEQAiz1HiVSGAKWs2?filename=fp5.png',
-    'https://ipfs.io/ipfs/QmfBLyBYgcpXdrwNGKfzPMnaUidW8CizrvgignDfAoV1Gf?filename=fp6.png',
-    'https://ipfs.io/ipfs/QmZyyYRr2gV87MoCwQe2rHiavzvsN4xz1rmeoRfaax1ijK?filename=fp7.png',
-    'https://ipfs.io/ipfs/QmcWpkoXKYarxXof4qByuPmngcsH9VTDSh54WcQdjwHHbd?filename=fp8.png',
-  ]
+
   return (
     <Box direction="column" justify="start" align="center">
       <Box direction="column" justify="start" align="center">
@@ -77,7 +87,7 @@ export function NFTpage() {
       </Box>
 
       <Box direction="row" justify="center" align="center" wrap>
-        {staticNfts.map((nft, index) => (
+        {nfts.map((nft, index) => (
           <div key={index} css={style.nftContainer}>
             <img src={nft} css={style.nfts} width="100%" />
           </div>
