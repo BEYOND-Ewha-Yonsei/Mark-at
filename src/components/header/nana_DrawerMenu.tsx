@@ -53,7 +53,7 @@ export const DrawerMenu = () => {
         navigate('/NFTpaint')
         break
       case 'marketregister':
-        navigate('/market-register')
+        navigate('/myMarket')
         break
         
       default:

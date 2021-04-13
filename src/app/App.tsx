@@ -16,7 +16,7 @@ import MarketInfo1 from 'src/app/storePages/store1'
 import MarketInfo2 from 'src/app/storePages/store2'
 import MarketInfo3 from 'src/app/storePages/store3'
 import MarketInfo4 from 'src/app/storePages/store4'
-import MarketInfo5 from 'src/app/storePages/store5'
+import { default as MarketInfo5, default as MarketInfo6 } from 'src/app/storePages/store5'
 import { UpdateBanner } from 'src/app/UpdateBanner'
 import Uploading from 'src/app/utils/Uploading'
 import { ModalProvider } from 'src/components/modal/modalContext'
@@ -91,7 +91,7 @@ export const App = () => {
               <Route path="store/3" element={<MarketInfo3/>} />
               <Route path="store/4" element={<MarketInfo4/>} />
               <Route path="store/5" element={<MarketInfo5/>} />
-
+              <Route path="myMarket" element={<MarketInfo6/>} />
               <Route path="store-detail/1" element ={<StoreDetailPage/>} /> 
               <Route path="store" element={<StoreDetailPage/>} />
 

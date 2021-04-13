@@ -9,21 +9,21 @@ import website from 'src/components/icons/phone-call.svg';
 import { Box } from 'src/components/layout/Box';
 import { Stylesheet } from 'src/styles/types';
 
-export default function MarketInfo5() {
-    const Store =({
-      "id": "6",
-      "name": "Oldies Trove Store",
-      "location": "Airport Avenue 3050, CA US",
-      "desc": "We give you fortunate chances to meet fairy-tale lamps, Lumière, and Age of Discovery herb drawer.",
-      "mainpic": "http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/Oldies_Trove_Store_2_XfhDDGN.jpg",
-      "categ": "Antiques",
+export default function MarketInfo6() {
+    const Store =(    {
+      "id": "24",
+      "name": "Eden&lawn",
+      "location": "Venice Boulevard 13000, CA US",
+      "desc": "Shop Eden&lawn's favorite gardening supplies. Modern outdoor pots and planters, garden hoses and watering cans, garden aprons, gardening boots\r\nEden&lawn have a range of garden products & supplies, from garden furniture to gardening tools. All great quality & value.",
+      "mainpic": "http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/%E1%84%85%E1%85%A9%E1%84%80%E1%85%A9_4GrbU6e.png",
+      "categ": "Home&Garden",
       "period": "5th March, 2021 - 14th April, 2021",
       "hour": "9AM ~ 6PM",
-      "website": "www.instagram.com/s234rn",
-      "pic1": "http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/Oldies_Trove_Store_3_B41S5tz.jpg",
-      "pic2": "http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/Oldies_Trove_Store_4.jpg",
-      "pic3": "http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/Oldies_Trove_Store1.jpg",
-      "clap": 79
+      "website": "www.instagram.com/g45tnsj2s",
+      "pic1": "http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/%E1%84%80%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B74_sqkFUFc.jpg",
+      "pic2": "http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/%E1%84%80%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B73_uTqDuYu.jpg",
+      "pic3": "http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/%E1%84%80%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B72_Ktt6Xm9.jpg",
+      "clap": 41
   });
     return (
         <>
