@@ -1,6 +1,10 @@
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
+import { getContract } from 'src/blockchain/contracts'
 import { Button } from 'src/components/buttons/Button'
 import { Box } from 'src/components/layout/Box'
+import { CeloContract } from 'src/config'
+import { useWalletAddress } from 'src/features/wallet/utils'
 import { Font } from 'src/styles/fonts'
 import { mq, useIsMobile } from 'src/styles/mediaQueries'
 import { Stylesheet } from 'src/styles/types'
@@ -12,57 +16,69 @@ export function NFTpage() {
     navigate('/NFTpaint')
   }
   //*~~*~*~*~**~*~*~*~*~*~~*code for get Tokens*~*~*~*~*~*~*
-  // const test = getContract(CeloContract.MarkAtToken)
-  // const address = useWalletAddress()
-  // const [nfts, setNfts] = useState<string[]>([])
+  const test = getContract(CeloContract.MarkAtToken)
+  const address = useWalletAddress()
+  const [nfts, setNfts] = useState<string[]>([])
+  let testNfts: string[] = []
 
-  // useEffect(() => {
-  //   console.log('before fetch: ', nfts)
-  //   fetch()
-  // }, [])
+  useEffect(() => {
+    // console.log('before fetch: ', nfts)
+    // async function fetch() {
+    //   let tempnfts: string[] = []
+
+    //   await getBalance().then(function (data: any) {
+    //     const balance = parseInt(data._hex, 16)
+    //     console.log('balance: ', balance)
+
+    //     for (let i = 0; i < balance; i++) {
+    //       getData(i)
+    //         .then(function (data: any) {
+    //           tempnfts.push(data)
+    //         })
+    //         .catch(function (err: any) {
+    //           console.log(err)
+    //         })
+    //     }
+    //     console.log('최종: ', tempnfts)
+    //   })
+    //   setNfts(tempnfts)
+    // }
+    // fetch()
+
+    const staticNfts = [
+      'https://ipfs.io/ipfs/QmQxtsnSTtWhFN8cP3hg2jZaTcCBxNFK3gNg7zcFUWtrK7?filename=fp1.png',
+      'https://ipfs.io/ipfs/QmQPdMLW9Lu1ZEZT1sKF58zjtgt5ydeKiP4aW6LqM9rShB?filename=fp2.png',
+      'https://ipfs.io/ipfs/Qmdye38FXH1RgN1WFScqayD8S51Ndf97uCa7QChUuNa9EA?filename=fp3.png',
+      'https://ipfs.io/ipfs/QmRMBx8yPwdq1TpTXMdwYcfeXsMkNinFsRtJ3qQogizXWC?filename=fp4.png',
+      'https://ipfs.io/ipfs/QmdYMMKKWJP1D4AHiPe7wg9GXtqcttEQAiz1HiVSGAKWs2?filename=fp5.png',
+      'https://ipfs.io/ipfs/QmfBLyBYgcpXdrwNGKfzPMnaUidW8CizrvgignDfAoV1Gf?filename=fp6.png',
+      'https://ipfs.io/ipfs/QmZyyYRr2gV87MoCwQe2rHiavzvsN4xz1rmeoRfaax1ijK?filename=fp7.png',
+      'https://ipfs.io/ipfs/QmcWpkoXKYarxXof4qByuPmngcsH9VTDSh54WcQdjwHHbd?filename=fp8.png',
+    ]
+
+    async function showNfts() {
+      await getBalance().then(function (data: any) {
+        const balance = parseInt(data._hex, 16)
+        setNfts(staticNfts.splice(8 - balance))
+      })
+    }
+    showNfts()
+    console.log(staticNfts)
+  }, [])
   // console.log('after fetch: ', nfts)
   // console.log('zero: ', nfts[0])
 
-  // async function fetch() {
-  //   let tempnfts: string[] = []
+  //  console.log(testNfts)
+  function getBalance() {
+    return test.balanceOf(address)
+  }
 
-  //   await getBalance().then(function (data: any) {
-  //     const balance = parseInt(data._hex, 16)
-  //     console.log('balance: ', balance)
+  function getData(index: number) {
+    return test.tokenURI(index)
+  }
 
-  //     for (var i = 0; i < balance; i++) {
-  //       getData(i)
-  //         .then(function (data: any) {
-  //           tempnfts.push(data)
-  //         })
-  //         .catch(function (err: any) {
-  //           console.log(err)
-  //         })
-  //     }
-  //     console.log('최종: ', tempnfts)
-  //     setNfts(tempnfts)
-  //   })
-  // }
-
-  // function getBalance() {
-  //   return test.balanceOf(address)
-  // }
-
-  // function getData(index: number) {
-  //   return test.tokenURI(index)
-  // }
-  const staticNfts = [
-    'https://ipfs.io/ipfs/QmQxtsnSTtWhFN8cP3hg2jZaTcCBxNFK3gNg7zcFUWtrK7',
-    'https://ipfs.io/ipfs/QmQPdMLW9Lu1ZEZT1sKF58zjtgt5ydeKiP4aW6LqM9rShB',
-    'https://ipfs.io/ipfs/Qmdye38FXH1RgN1WFScqayD8S51Ndf97uCa7QChUuNa9EA',
-    'https://ipfs.io/ipfs/QmRMBx8yPwdq1TpTXMdwYcfeXsMkNinFsRtJ3qQogizXWC',
-    'https://ipfs.io/ipfs/QmdYMMKKWJP1D4AHiPe7wg9GXtqcttEQAiz1HiVSGAKWs2',
-    'https://ipfs.io/ipfs/QmfBLyBYgcpXdrwNGKfzPMnaUidW8CizrvgignDfAoV1Gf',
-    'https://ipfs.io/ipfs/QmZyyYRr2gV87MoCwQe2rHiavzvsN4xz1rmeoRfaax1ijK',
-    'https://ipfs.io/ipfs/QmcWpkoXKYarxXof4qByuPmngcsH9VTDSh54WcQdjwHHbd',
-  ]
   return (
-    <>
+    <Box direction="column" justify="start" align="center">
       <Box direction="column" justify="start" align="center">
         <h1 css={style.h1}>{`My ${isMobile ? '' : 'simple '}NFT`}</h1>
         <Button onClick={onClickMove} styles={style.buttonContainer}>
@@ -70,19 +86,19 @@ export function NFTpage() {
         </Button>
       </Box>
 
-      <Box direction="row" justify="center" align="center">
-        {/* {nfts.map((nft, i) => (
-          <div key={i} css={style.nftContainer}>
-            <img src={nft} css={style.nfts} />
+      <Box direction="row" justify="center" align="center" wrap>
+        {nfts.map((nft, index) => (
+          <div key={index} css={style.nftContainer}>
+            <img src={nft} css={style.nfts} width="100%" />
           </div>
-        ))} */}
-        {staticNfts.map((nft, index) => (
+        ))}
+        {/* {staticNfts.map((nft, index) => (
           <div key={index} css={style.nftContainer}>
             <img src={nft} />
           </div>
-        ))}
+        ))} */}
       </Box>
-    </>
+    </Box>
   )
 }
 
@@ -122,7 +138,6 @@ const style: Stylesheet = {
     borderWidth: '1em ',
     borderColor: 'linear-gradient(0.6turn,rgba(247,214,55),rgba(47,207,87))',
     borderRadius: 50,
-    boxShadow: '0px 0px 10px #ccc',
     [mq[768]]: {
       marginTop: '2.5em',
       flexDirection: 'row',

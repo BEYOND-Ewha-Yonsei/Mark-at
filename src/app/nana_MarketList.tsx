@@ -22,7 +22,7 @@ export function MarketList() {
   const navigate = useNavigate()
 
   const onClick = (_storeId: any) => {
-    navigate('/store-detail/{_storeId}')
+    navigate('/store/'+`${_storeId}`)
   }
 
   const marketplace = 'Venice High Flea Market'
