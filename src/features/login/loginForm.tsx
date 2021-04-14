@@ -3,9 +3,8 @@ import { Input } from 'antd';
 import axios from "axios";
 import * as React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { RootState } from 'src/app/rootReducer';
 import seller from 'src/components/icons/forsellers.svg';
 import Logo from 'src/components/icons/Mark-at_logo.svg';
 import { Box } from 'src/components/layout/Box';
@@ -35,7 +34,6 @@ export function LoginForm() {
     return true;
   };
   const handleSubmit = () => {
-    console.log(form);
     if (!validCheck) return;
     axios
       .post(`http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/server/login/`,form )
@@ -44,13 +42,15 @@ export function LoginForm() {
         if (response.data.message == "1"){
           alert("login success!");
           dispatch(userActions.trigger(form.id))
-          const userId = useSelector((s: RootState) => s.user.userId)
+          //const userId = useSelector((s: RootState) => s.user.userId)
           //console.log(userId);
           navigate('/')}
-        else if(response.data.message == "0"){alert("login fail!");}
+        else if(response.data.message == "0"){
+          resetForm();
+          alert("login fail!");}
       })
       .catch(function (error) {
-        // resetForm();
+        // 
         // console.log(error);
       });
 

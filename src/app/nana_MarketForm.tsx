@@ -15,13 +15,13 @@ export default function MarketForm() {
   const [ImgURL3, setImgURL3] = useState<any|null>();
   const [ImgURL4, setImgURL4] = useState<any|null>();
 
-  const [mainpic, setMainpic] = useState("");
-  const [pic1, setPic1] = useState("");
-  const [pic2, setPic2] = useState("");
-  const [pic3, setPic3] = useState("");
+  const [mainpic, setMainpic] = useState<any>("");
+  const [pic1, setPic1] = useState<any>("");
+  const [pic2, setPic2] = useState<any>("");
+  const [pic3, setPic3] = useState<any>("");
   
   interface Istore {
-    id: string;
+    // id: string;
     name: string;
     categ: string;
     desc: string;
@@ -29,14 +29,13 @@ export default function MarketForm() {
     period: string;
     hour: string;
     website: string;
-    clap: number|null;
-    mainpic:string|null;
-    pic1:string|null;
-    pic2:string|null;
-    pic3:string|null;
+    // clap: number|null;
+    // mainpic:any|null;
+    // pic1:any|null;
+    // pic2:any|null;
+    // pic3:any|null;
   }
   const [store, setStore] = useState<Istore>({
-    id:'',
     name: '',
     categ: '',
     desc: '',
@@ -44,14 +43,7 @@ export default function MarketForm() {
     period: '',
     hour: '',
     website: '',
-    clap: 0,
-    mainpic:'',
-    pic1:'',
-    pic2:'',
-    pic3:''
   })
-  const FormData = require("form-data");
-  const qs = require('qs');
   const formData = new FormData();
   const userId = useSelector((s: RootState) => s.user.userId)
 
@@ -71,35 +63,24 @@ export default function MarketForm() {
         case "mainpic":
           setImgURL1(reader.result)
           setMainpic(file)
-          setStore({...store, mainpic:file})
-          console.log(mainpic)
-          console.log(store)
           break;
         case "pic1":
           setImgURL2(reader.result)
           setPic1(file)
-          setStore({...store, pic1:file})
-          console.log(store)
           break;
         case "pic2":
           setImgURL3(reader.result)
           setPic2(file)
-          setStore({...store, pic2:file})
-          console.log(store)
           break;
         case "pic3":
           setImgURL4(reader.result)
           setPic3(file)
-          setStore({...store, pic3:file})
-          console.log(store)
           break;
       }
     }
     reader.readAsDataURL(file);
 	};
   const handleSubmit = () => {
-    setStore({...store,id:userId})
-    console.log(store)
     formData.append('id',userId)
     formData.append('name',store.name)
     formData.append('categ',store.categ)
@@ -108,31 +89,28 @@ export default function MarketForm() {
     formData.append('period',store.period)
     formData.append('hour',store.hour)
     formData.append('website',store.website)
-    formData.append('clap',null)
+    //formData.append('clap',null)
     formData.append('mainpic',mainpic)
     formData.append('pic1',pic1)
     formData.append('pic2',pic2)
     formData.append('pic3',pic3)
-    for (var value of formData.values()) {
-      console.log(value);
-   }
+  //   for (var value of formData.values()) {
+  //     console.log(value);
+  //  }
     axios.defaults.headers.post['Content-Type'] = 'multipart/form-data' ;
     axios
       .post('http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/server/store/',formData)
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         alert('Product Successfully Uploaded')
-        // navigate('/myMarket')
+        navigate('/myMarket')
       })
       .catch(function (error) {
         console.log(error)
         alert('fail')
       })
   }
-  const navi = () => {
-    alert('Product Successfully Uploaded')
-    navigate('/myMarket')
-  }
+
   return (
     <form onSubmit={handleSubmit} encType={'multipart/form-data'}>
       <Box direction="column" align="center" styles={style.inputContainer}>
