@@ -15,7 +15,7 @@ export function OnboardingScreenFrame({ current, total, children }: PropsWithChi
   return (
     <Box direction="column" align="center" justify="between" styles={style.container}>
       <div css={style.logoContainer}>
-        <img width="150em" height="53.125em" src={Logo} alt="Celo Logo" css={style.logo} />
+        <img width="150em" height="53.125em" src={Logo} alt="Mark-at Logo" css={style.logo} />
       </div>
       <Box align="center" justify="center" direction="column" styles={style.childrenContainer}>
         {children}
@@ -40,7 +40,7 @@ const style: Stylesheet = {
     alignSelf: 'flex-start',
   },
   logo: {
-    maxWidth: '25vw',
+    maxWidth: '30vw',
     padding: '0.25em 1em',
     [mq[768]]: {
       padding: '0.75em 1em',

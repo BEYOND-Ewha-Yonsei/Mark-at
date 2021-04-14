@@ -1,25 +1,43 @@
 import { Col, Row } from 'antd'
 import * as React from 'react'
-import { useCallback, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import Drawer from 'react-bottom-drawer'
-import { useNavigate } from 'react-router'
 import { Button } from 'src/components/buttons/Button'
 import { Box } from 'src/components/layout/Box'
-import { useIsMobile } from 'src/styles/mediaQueries'
 import { Stylesheet } from 'src/styles/types'
 
 export function NFTpaint() {
-  const isMobile = useIsMobile()
-  const navigate = useNavigate()
   const [isVisible, setIsVisible] = useState(false)
   const openDrawer = useCallback(() => setIsVisible(true), [])
   const closeDrawer = useCallback(() => setIsVisible(false), [])
 
-  const onClose = useCallback(() => {
-    setIsVisible(false)
-  }, [])
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  const [imgsrc, setSrc] = useState({})
+  var canvas = document.querySelector('canvas')
+  var ctx = canvas?.getContext('2d')
+  var myImage = '../src/components/icons/cat_1.svg'
+
+  function addToCanvas(ctx: any, image: string, x: any, y: any) {
+    var img = new Image()
+    img.src = stampNFTs[imgIndex]
+    img.width = 48
+    img.onload = function () {
+      ctx.drawImage(img, x - 24, y - 24)
+    }
+  }
+
+  const stampNFTs = [
+    '../src/components/icons/rabbit.svg',
+    '../src/components/icons/pig_1.svg',
+    '../src/components/icons/penguin.svg',
+    '../src/components/icons/mouse.svg',
+    '../src/components/icons/hen_1.svg',
+    '../src/components/icons/fox_1.svg',
+    '../src/components/icons/duck_1.svg',
+    '../src/components/icons/cat_1.svg',
+  ]
+
+  const [imgIndex, setImgIndex] = useState(-1)
 
   const staticNfts = [
     'https://ipfs.io/ipfs/QmQxtsnSTtWhFN8cP3hg2jZaTcCBxNFK3gNg7zcFUWtrK7',
@@ -33,18 +51,20 @@ export function NFTpaint() {
   ]
 
   return (
-    <Box direction="column" justify="start">
+    <Box direction="column" justify="start" styles={{ backroundColor: 'rgba(246,246,246)' }}>
       <div css={style.topPadding}></div>
       <Box direction="column" justify="center" align="center">
         <img src="../static/My-NFT-Paint.svg"></img>
       </Box>
-      {/* <Canvas></Canvas> */}
-      <Box css={style.canvas}>
-        <img
-          src="../static/nftpaintfake.png"
-          css={{ paddingTop: '3em', width: '100%', overflow: 'hidden' }}
-        ></img>
-      </Box>
+      <div className="Canvas" style={style.canvas}>
+        <canvas
+          ref={canvasRef}
+          height={500}
+          width={375}
+          className="canvas"
+          onClick={(e) => addToCanvas(ctx, myImage, e.nativeEvent.offsetX, e.nativeEvent.offsetY)}
+        />
+      </div>
       <Button onClick={openDrawer} styles={style.drawerButton}>
         Select Mark
       </Button>
@@ -53,13 +73,13 @@ export function NFTpaint() {
           direction="row"
           justify="center"
           align="center"
-          styles={{ minHeight: '30vh', display: 'inline-flex' }}
+          styles={{ minHeight: '30vh', display: 'flex' }}
         >
-          <Row justify="center">
+          <Row>
             {staticNfts.map((nft, index) => (
               <Col span={6}>
                 <div key={index} css={style.nftContainer}>
-                  <img src={nft} css={style.nfts} width="100%" />
+                  <img src={nft} css={style.nfts} width="100%" onClick={() => setImgIndex(index)} />
                 </div>
               </Col>
             ))}
@@ -75,9 +95,9 @@ const style: Stylesheet = {
     height: '24pt',
   },
   canvas: {
-    height: '80vh',
     width: '100%',
-    border: '1px',
+    borderBottom: '2px rgba(189,189,189)',
+    alignItems: 'center',
   },
   nftContainer: {
     margin: '0.5em',
