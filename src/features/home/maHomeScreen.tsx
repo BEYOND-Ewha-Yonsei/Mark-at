@@ -20,9 +20,6 @@ export function HomeScreen() {
   useEffect(() => {
     if (window.innerWidth < 500) {
       setIsMobile(true)
-      console.log('모바일임니다')
-    } else {
-      console.log('큰화면입니다')
     }
   }, [])
   return (
