@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import Logo from 'src/components/icons/logo.svg'
+import Logo from 'src/components/icons/Mark-at_logo.svg'
 import { Box } from 'src/components/layout/Box'
 import { PageDots } from 'src/features/onboarding/PageDots'
 import { mq } from 'src/styles/mediaQueries'
@@ -41,9 +41,9 @@ const style: Stylesheet = {
   },
   logo: {
     maxWidth: '25vw',
-    padding: '0.25em 0.5em',
+    padding: '0.25em 1em',
     [mq[768]]: {
-      padding: '0.75em 0.5em',
+      padding: '0.75em 1em',
     },
   },
   childrenContainer: {

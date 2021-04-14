@@ -99,6 +99,7 @@ const style: Stylesheet = {
   search: {
     padding: '0.5em 0.5em',
     border: 'none',
+    borderRadius: 10,
     boxShadow: '0px 0px 10px #ccc',
   },
   marketCard: {
@@ -122,9 +123,7 @@ const style: Stylesheet = {
   },
   button: {
     position: 'absolute',
-    bottom: '5em',
-    // left: '50%',
-    // marginLeft: '-8em',
+    bottom: '8em',
     width: '18em',
     minWidth: '15em',
     height: '2.8em',
