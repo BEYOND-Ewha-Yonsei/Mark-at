@@ -3,8 +3,9 @@ import { Input } from 'antd';
 import axios from "axios";
 import * as React from "react";
 import { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { RootState } from 'src/app/rootReducer';
 import seller from 'src/components/icons/forsellers.svg';
 import Logo from 'src/components/icons/Mark-at_logo.svg';
 import { Box } from 'src/components/layout/Box';
@@ -34,7 +35,6 @@ export function LoginForm() {
     return true;
   };
   const handleSubmit = () => {
-    dispatch(userActions.trigger(form.id))
     console.log(form);
     if (!validCheck) return;
     axios
@@ -43,14 +43,15 @@ export function LoginForm() {
         console.log(response.data.message);
         if (response.data.message == "1"){
           alert("login success!");
-          console.log(form.id);
+          dispatch(userActions.trigger(form.id))
+          const userId = useSelector((s: RootState) => s.user.userId)
+          //console.log(userId);
           navigate('/')}
         else if(response.data.message == "0"){alert("login fail!");}
       })
       .catch(function (error) {
-        alert("response error");
-        resetForm();
-        console.log(error);
+        // resetForm();
+        // console.log(error);
       });
 
   };
