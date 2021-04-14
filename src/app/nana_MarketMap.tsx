@@ -1,7 +1,8 @@
 import { SearchOutlined } from '@ant-design/icons'
 import { Carousel, Input } from 'antd'
+import { CarouselRef } from 'antd/lib/carousel'
 import * as React from 'react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Button } from 'src/components/buttons/Button'
 import { Box } from 'src/components/layout/Box'
@@ -16,11 +17,12 @@ export function MarketMap() {
     navigate('/bigmarket/1')
   }
 
-  const [currentPoint, setPoint] = useState()
+  const [state, setState] = useState(0)
 
-  const onChange = () => {
-    setPoint
-    console.log(setPoint)
+  const slider = useRef<CarouselRef>(null)
+
+  const onClickPoint = (_id: number) => {
+    slider.current?.goTo(_id)
   }
 
   return (
@@ -34,7 +36,14 @@ export function MarketMap() {
           prefix={<SearchOutlined />}
         />
       </Box>
-      <Carousel autoplay={true} dots={false} infinite={true} afterChange={onChange}>
+      <Carousel
+        ref={slider}
+        dots={false}
+        infinite={true}
+        centerMode={true}
+        centerPadding="30px"
+        beforeChange={(current, next) => setState(next)}
+      >
         <Box align="center" styles={style.marketCard}>
           <img src="../static/market1.jpg" style={style.marketPicture} />
           <div className="textBox" style={style.marketProfile}>
@@ -48,8 +57,8 @@ export function MarketMap() {
             style={style.marketPicture}
           />
           <div className="textBox" style={style.marketProfile}>
-            <h3 margin-bottom="0px">Venice High Flea Market</h3>
-            <h4 margin-top="0px">Venice Boulevard 13000, CA US</h4>
+            <h3 css={{ marginBottom: '0px' }}>Venice High Flea Market</h3>
+            <h4>Venice Boulevard 13000, CA US</h4>
           </div>
         </Box>
         <Box align="center" styles={style.marketCard}>
@@ -58,25 +67,57 @@ export function MarketMap() {
             style={style.marketPicture}
           />
           <div className="textBox" style={style.marketProfile}>
-            <h3 margin-bottom="0px">Starway Flea Market</h3>
-            <h4 margin-top="0px">1223 Race St, Denver, CO 80206 United States</h4>
+            <h3 css={{ marginBottom: '0px' }}>Starway Flea Market</h3>
+            <h4>1223 Race St, Denver, CO 80206 United States</h4>
           </div>
         </Box>
       </Carousel>
-      <div style={{ position: 'fixed', top: '216pt', left: '151pt' }}>
-        <div style={style.dot1}>
-          <div style={style.dot2}></div>
-        </div>
+      <div
+        onClick={() => onClickPoint(0)}
+        style={{ position: 'fixed', top: '216pt', left: '151pt', width: 'auto' }}
+      >
+        {state == 0 ? (
+          <div style={style.dot1}>
+            <div style={style.dot2}></div>
+          </div>
+        ) : (
+          <div style={style.dotgray1}>
+            <div style={style.dotgray2}></div>
+          </div>
+        )}
       </div>
-      <div style={{ position: 'fixed', top: '340pt', left: '134pt' }}>
-        <div style={style.dot1}>
-          <div style={style.dot2}></div>
-        </div>
+      <div
+        onClick={() => onClickPoint(1)}
+        style={{
+          position: 'fixed',
+          top: '340pt',
+          left: '134pt',
+          width: 'auto',
+        }}
+      >
+        {state == 1 ? (
+          <div style={style.dot1}>
+            <div style={style.dot2}></div>
+          </div>
+        ) : (
+          <div style={style.dotgray1}>
+            <div style={style.dotgray2}></div>
+          </div>
+        )}
       </div>
-      <div style={{ position: 'fixed', top: '392pt', left: '172pt' }}>
-        <div style={style.dot1}>
-          <div style={style.dot2}></div>
-        </div>
+      <div
+        onClick={() => onClickPoint(2)}
+        style={{ position: 'fixed', top: '392pt', left: '172pt', width: 'auto' }}
+      >
+        {state == 2 ? (
+          <div style={style.dot1}>
+            <div style={style.dot2}></div>
+          </div>
+        ) : (
+          <div style={style.dotgray1}>
+            <div style={style.dotgray2}></div>
+          </div>
+        )}
       </div>
       <Box direction="column" align="center" margin="20em 0 0 0">
         <Button onClick={onClickViewList} styles={style.button}>
@@ -93,7 +134,6 @@ const style: Stylesheet = {
       marginLeft: '-1.3em',
     },
     minHeight: '100%',
-
     backgroundImage: `url("static/maps.jpg")`,
   },
   search: {
@@ -105,7 +145,7 @@ const style: Stylesheet = {
   marketCard: {
     display: 'flex',
     padding: '1em',
-    margin: '1em 2em',
+    margin: '1em 0.5em',
     borderRadius: 10,
     boxShadow: '0px 0px 10px #ccc',
     height: '7em',
@@ -135,17 +175,31 @@ const style: Stylesheet = {
     },
   },
   dot1: {
-    width: '32pt',
-    height: '32pt',
+    width: '28pt',
+    height: '28pt',
     display: 'flex',
-    backgroundColor: 'rgba(47,207,87,.5)',
+    backgroundColor: 'rgba(47,207,87,.3)',
     borderRadius: 50,
   },
   dot2: {
     margin: 'auto',
-    width: '15pt',
-    height: '15pt',
+    width: '14pt',
+    height: '14pt',
     backgroundColor: 'rgba(47,207,87)',
+    borderRadius: 50,
+  },
+  dotgray1: {
+    width: '24pt',
+    height: '24pt',
+    display: 'flex',
+    backgroundColor: 'rgba(189,189,189,.3)',
+    borderRadius: 50,
+  },
+  dotgray2: {
+    margin: 'auto',
+    width: '12pt',
+    height: '12pt',
+    backgroundColor: 'rgba(189,189,189)',
     borderRadius: 50,
   },
 }
