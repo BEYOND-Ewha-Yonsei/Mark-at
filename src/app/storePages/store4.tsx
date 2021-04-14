@@ -1,5 +1,6 @@
 import { Carousel } from 'antd';
 import * as React from 'react';
+import { useNavigate } from 'react-router';
 import { HrDivider } from 'src/components/HrDivider';
 import period from 'src/components/icons/calendar.svg';
 import hour from 'src/components/icons/clock.svg';
@@ -7,9 +8,14 @@ import HeartIcon from 'src/components/icons/heart.svg';
 import location from 'src/components/icons/map-pin.svg';
 import website from 'src/components/icons/phone-call.svg';
 import { Box } from 'src/components/layout/Box';
+import { ScreenContentFrame } from 'src/components/layout/ScreenContentFrame';
 import { Stylesheet } from 'src/styles/types';
 
 export default function MarketInfo4() {
+  const navigate= useNavigate()
+  const onClickBack = () => {
+    navigate(-1)
+  }
     const Store =({
       "id": "35",
       "name": "Dolls around the world",
@@ -26,7 +32,7 @@ export default function MarketInfo4() {
       "clap": 96
   });
     return (
-        <>
+      <ScreenContentFrame onClose={onClickBack}>
             <Carousel autoplay>
               <div style={style.pic}>
               <img style={style.pic} src={Store.mainpic}></img>
@@ -42,15 +48,15 @@ export default function MarketInfo4() {
               </div>
             </Carousel>
           <Box direction="column" align="start" styles={style.back} >
-            <Box direction="column" align="start" styles={style.background}>
-              <Box direction="row" align="start"margin="0 1em 0 1em">
-                <h1 css={style.header}>{Store.name}</h1>
-                <div css={{ display: 'inline', padding: '0 10em' }}>
+          <Box direction="column" align="start" styles={style.background}>
+              <h1 css={style.header}>{Store.name}</h1>
+              <Box direction="row" align="start" >
+              <button style={style.categ}>#{Store.categ}</button>
+                <div css={{ display: 'inline', padding:'0 1.5em' }}>
                 <img src={HeartIcon} />
                 <h5 css={{ textAlign: 'center' }}>{Store.clap}</h5>
                 </div>
               </Box>
-              <button style={style.categ}>#{Store.categ}</button>
             </Box>
             <Box margin='0.5em 0 0 0'></Box>
             <Box direction="column" align="start" styles={style.background}>
@@ -81,13 +87,14 @@ export default function MarketInfo4() {
                 </Box>
             </Box>
           </Box>
-        </>
+        </ScreenContentFrame>
     )
 }
 const style: Stylesheet = {
   background: {
     background: 'rgba( 255, 255, 255)',
     padding: '1em',
+    width:'100%'
   },
   back:{
     background:'rgba(246,246,246)',

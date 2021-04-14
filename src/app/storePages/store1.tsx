@@ -1,5 +1,6 @@
 import { Carousel } from 'antd';
 import * as React from 'react';
+import { useNavigate } from 'react-router';
 import { HrDivider } from 'src/components/HrDivider';
 import period from 'src/components/icons/calendar.svg';
 import hour from 'src/components/icons/clock.svg';
@@ -7,9 +8,11 @@ import HeartIcon from 'src/components/icons/heart.svg';
 import location from 'src/components/icons/map-pin.svg';
 import website from 'src/components/icons/phone-call.svg';
 import { Box } from 'src/components/layout/Box';
+import { ScreenContentFrame } from 'src/components/layout/ScreenContentFrame';
 import { Stylesheet } from 'src/styles/types';
 
 export default function MarketInfo1() {
+  const navigate= useNavigate()
     const Store =(    {
       "id": "17",
       "name": "groceryus",
@@ -25,8 +28,11 @@ export default function MarketInfo1() {
       "pic3": "http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/%E1%84%80%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B73_E5KKVPQ.jpg",
       "clap": 91
   });
+  const onClickBack = () => {
+    navigate(-1)
+  }
     return (
-        <>
+        <ScreenContentFrame onClose={onClickBack}>
             <Carousel autoplay>
               <div style={style.pic}>
               <img style={style.pic} src={Store.mainpic}></img>
@@ -43,14 +49,14 @@ export default function MarketInfo1() {
             </Carousel>
           <Box direction="column" align="start" styles={style.back} >
             <Box direction="column" align="start" styles={style.background}>
-              <Box direction="row" align="start"margin="0 1em 0 1em">
-                <h1 css={style.header}>{Store.name}</h1>
-                <div css={{ display: 'inline', padding: '0 10em' }}>
+              <h1 css={style.header}>{Store.name}</h1>
+              <Box direction="row" align="start" >
+              <button style={style.categ}>#{Store.categ}</button>
+                <div css={{ display: 'inline', padding:'0 1.5em' }}>
                 <img src={HeartIcon} />
                 <h5 css={{ textAlign: 'center' }}>{Store.clap}</h5>
                 </div>
               </Box>
-              <button style={style.categ}>#{Store.categ}</button>
             </Box>
             <Box margin='0.5em 0 0 0'></Box>
             <Box direction="column" align="start" styles={style.background}>
@@ -81,13 +87,14 @@ export default function MarketInfo1() {
                 </Box>
             </Box>
           </Box>
-        </>
+          </ScreenContentFrame>
     )
 }
 const style: Stylesheet = {
   background: {
     background: 'rgba( 255, 255, 255)',
     padding: '1em',
+    width:'100%'
   },
   back:{
     background:'rgba(246,246,246)',

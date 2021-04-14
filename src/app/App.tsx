@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import { BadBrowserScreen } from 'src/app/BadBrowserScreen'
 import { ErrorBoundary } from 'src/app/FailScreen'
+import { MyMarket } from 'src/app/myMarket'
 import MarketForm from 'src/app/nana_MarketForm'
 import { MarketList } from 'src/app/nana_MarketList'
 import { MarketMap } from 'src/app/nana_MarketMap'
@@ -11,7 +12,6 @@ import { NFTpage } from 'src/app/nana_NFTpage'
 import { NFTpaint } from 'src/app/nana_NFTpaint'
 import { NotFoundScreen } from 'src/app/NotFoundScreen'
 import { useSplashScreen } from 'src/app/splash'
-import { StoreDetailPage } from 'src/app/StoreDetailPage'
 import MarketInfo1 from 'src/app/storePages/store1'
 import MarketInfo2 from 'src/app/storePages/store2'
 import MarketInfo3 from 'src/app/storePages/store3'
@@ -84,20 +84,17 @@ export const App = () => {
 
               <Route path="market-register" element={<MarketForm />} />
               <Route path="test" element={<Uploading />} />
-
               <Route path="store/1" element={<MarketInfo1 />} />
               <Route path="store/2" element={<MarketInfo2 />} />
               <Route path="store/3" element={<MarketInfo3 />} />
               <Route path="store/4" element={<MarketInfo4 />} />
               <Route path="store/5" element={<MarketInfo5 />} />
-              <Route path="myMarket" element={<MarketInfo6 />} />
-              <Route path="store-detail/1" element={<StoreDetailPage />} />
-              <Route path="store" element={<StoreDetailPage />} />
-
+              <Route path="store/6" element={<MarketInfo6 />} />
+              <Route path="myMarket" element={<MyMarket />} />
+              {/* <Route path="store-detail/:storeId" element={<StoreDetailPage />} /> */}
               <Route path="market-map" element={<MarketMap />} />
               <Route path="bigmarket/1" element={<MarketList />} />
               <Route path="seller-register" element={<RegisterScreen />} />
-
               <Route path="seller-login" element={<LoginForm />} />
             </Route>
 

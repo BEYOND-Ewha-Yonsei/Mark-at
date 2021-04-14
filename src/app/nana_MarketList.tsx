@@ -111,9 +111,11 @@ export function MarketList() {
       </div>
     </Card>
   )
-
+  const onClickBack = () => {
+    navigate(-1)
+  }
   return (
-    <ScreenContentFrame css={{ padding: '1.0em' }}>
+    <ScreenContentFrame css={{ padding: '1.0em' }} onClose={onClickBack}>
       <Box direction="column" justify="center">
         <Box justify="start" align="start">
           <h1 css={style.h1}>{marketplace}</h1>
