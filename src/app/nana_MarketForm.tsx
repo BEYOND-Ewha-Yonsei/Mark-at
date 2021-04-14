@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { RootState } from 'src/app/rootReducer'
 import { Box } from 'src/components/layout/Box'
+import { ScreenContentFrame } from 'src/components/layout/ScreenContentFrame'
 import { Stylesheet } from 'src/styles/types'
 import styled from "styled-components"
 
@@ -112,6 +113,7 @@ export default function MarketForm() {
   }
 
   return (
+    <ScreenContentFrame>
     <form onSubmit={handleSubmit} encType={'multipart/form-data'}>
       <Box direction="column" align="center" styles={style.inputContainer}>
         <Box direction="column" align="center">
@@ -249,6 +251,7 @@ export default function MarketForm() {
 
       </Box>
     </form>
+    </ScreenContentFrame>
   )
 }
 
