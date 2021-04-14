@@ -15,13 +15,12 @@ export function NFTpage() {
   const onClickMove = () => {
     navigate('/NFTpaint')
   }
-  //*~~*~*~*~**~*~*~*~*~*~~*code for get Tokens*~*~*~*~*~*~*
   const test = getContract(CeloContract.MarkAtToken)
   const address = useWalletAddress()
   const [nfts, setNfts] = useState<string[]>([])
   const [nfts_re, setNfts_re] = useState<string[]>([])
 
-  const staticNfts = [
+  const Metadata = [
     'https://ipfs.io/ipfs/QmQxtsnSTtWhFN8cP3hg2jZaTcCBxNFK3gNg7zcFUWtrK7?filename=fp1.png',
     'https://ipfs.io/ipfs/QmQPdMLW9Lu1ZEZT1sKF58zjtgt5ydeKiP4aW6LqM9rShB?filename=fp2.png',
     'https://ipfs.io/ipfs/Qmdye38FXH1RgN1WFScqayD8S51Ndf97uCa7QChUuNa9EA?filename=fp3.png',
@@ -31,7 +30,7 @@ export function NFTpage() {
     'https://ipfs.io/ipfs/QmZyyYRr2gV87MoCwQe2rHiavzvsN4xz1rmeoRfaax1ijK?filename=fp7.png',
     'https://ipfs.io/ipfs/QmcWpkoXKYarxXof4qByuPmngcsH9VTDSh54WcQdjwHHbd?filename=fp8.png',
   ]
-  let staticNfts_re = [
+  let Metadata_re = [
     'https://ipfs.io/ipfs/QmQxtsnSTtWhFN8cP3hg2jZaTcCBxNFK3gNg7zcFUWtrK7?filename=fp1.png',
     'https://ipfs.io/ipfs/QmQPdMLW9Lu1ZEZT1sKF58zjtgt5ydeKiP4aW6LqM9rShB?filename=fp2.png',
     'https://ipfs.io/ipfs/Qmdye38FXH1RgN1WFScqayD8S51Ndf97uCa7QChUuNa9EA?filename=fp3.png',
@@ -45,19 +44,17 @@ export function NFTpage() {
     async function showNfts() {
       await getBalance().then(function (data: any) {
         const balance = parseInt(data._hex, 16)
-        console.log(balance)
 
         const q = Math.floor(balance / 8)
         const re = balance % 8
 
         for (let i = 0; i < q; i++) {
-          setNfts(nfts.concat(staticNfts))
+          setNfts(nfts.concat(Metadata))
         }
-        setNfts_re(nfts_re.concat(staticNfts_re.splice(0, re)))
+        setNfts_re(nfts_re.concat(Metadata_re.splice(0, re)))
       })
     }
     showNfts()
-    console.log(nfts)
   }, [])
 
   function getBalance() {
