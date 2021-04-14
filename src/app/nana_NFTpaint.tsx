@@ -1,3 +1,5 @@
+import { Col, Row } from 'antd'
+import * as React from 'react'
 import { useCallback, useState } from 'react'
 import Drawer from 'react-bottom-drawer'
 import { useNavigate } from 'react-router'
@@ -46,19 +48,22 @@ export function NFTpaint() {
       <Button onClick={openDrawer} styles={style.drawerButton}>
         Select Mark
       </Button>
-      <Drawer
-        duration={250}
-        hideScrollbars={false}
-        onClose={closeDrawer}
-        isVisible={isVisible}
-        css={{ minHeight: '30vh' }}
-      >
-        <Box direction="row" justify="center" align="center" styles={{ display: 'inline-flex' }}>
-          {staticNfts.map((nft, index) => (
-            <div key={index} css={style.nftContainer}>
-              <img width="72pt" height="72pt" src={nft} css={style.nfts} />
-            </div>
-          ))}
+      <Drawer duration={250} hideScrollbars={false} onClose={closeDrawer} isVisible={isVisible}>
+        <Box
+          direction="row"
+          justify="center"
+          align="center"
+          styles={{ minHeight: '30vh', display: 'inline-flex' }}
+        >
+          <Row justify="center">
+            {staticNfts.map((nft, index) => (
+              <Col span={6}>
+                <div key={index} css={style.nftContainer}>
+                  <img src={nft} css={style.nfts} width="100%" />
+                </div>
+              </Col>
+            ))}
+          </Row>
         </Box>
       </Drawer>
     </Box>
@@ -75,17 +80,20 @@ const style: Stylesheet = {
     border: '1px',
   },
   nftContainer: {
-    marginTop: '1em',
-    display: 'inline-blocky',
-    flexDirection: 'row',
+    margin: '0.5em',
+    display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    width: '6em',
+    height: '6em',
+    borderWidth: '1em ',
+    borderColor: 'linear-gradient(0.6turn,rgba(247,214,55),rgba(47,207,87))',
     borderRadius: 50,
-    borderColor: 'linear-gradient(0.25turn,rgba(247,214,55),rgba(47,207,87))',
   },
   nfts: {
     margin: '0.5em 0.5em 0.5em 0.5em',
-    display: 'flex',
+    width: '400',
   },
   drawerButton: {
     position: 'fixed',
