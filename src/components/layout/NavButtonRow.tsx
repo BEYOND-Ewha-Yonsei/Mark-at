@@ -5,18 +5,15 @@ import { Button } from 'src/components/buttons/Button'
 import { ChevronIcon } from 'src/components/icons/Chevron'
 import CubeIcon from 'src/components/icons/cube.svg'
 import LockIcon from 'src/components/icons/lock_small.svg'
-import WalletConnectIcon from 'src/components/icons/logos/wallet_connect.svg'
 import SendIcon from 'src/components/icons/send_payment.svg'
 import ExchangeIcon from 'src/components/icons/swap.svg'
 import VoteIcon from 'src/components/icons/vote_small.svg'
 import { Box } from 'src/components/layout/Box'
 import { Backdrop, backdropZIndex } from 'src/components/modal/Backdrop'
 import { config } from 'src/config'
-import { useDownloadDesktopModal } from 'src/features/download/DownloadDesktopModal'
 import { useAddressQrCodeModal } from 'src/features/qr/QrCodeModal'
 import { txFlowReset } from 'src/features/txFlow/txFlowSlice'
 import { useWalletAddress } from 'src/features/wallet/utils'
-import { useWalletConnectModal } from 'src/features/walletConnect/WalletConnectModal'
 import { Color } from 'src/styles/Color'
 import { Font } from 'src/styles/fonts'
 import { mq } from 'src/styles/mediaQueries'
@@ -33,8 +30,6 @@ export function NavButtonRow({ mobile, disabled }: Props) {
   const dispatch = useDispatch()
   const address = useWalletAddress()
   const showQrModal = useAddressQrCodeModal()
-  const showWalletConnectModal = useWalletConnectModal()
-  const showDownloadDesktopModal = useDownloadDesktopModal()
 
   const onSendClick = () => {
     dispatch(txFlowReset())
@@ -61,8 +56,6 @@ export function NavButtonRow({ mobile, disabled }: Props) {
     if (config.isElectron) {
       dispatch(txFlowReset())
       navigate('/lock')
-    } else {
-      showDownloadDesktopModal()
     }
   }
 
@@ -71,9 +64,7 @@ export function NavButtonRow({ mobile, disabled }: Props) {
     if (config.isElectron) {
       dispatch(txFlowReset())
       navigate('/validators')
-    } else {
-      showDownloadDesktopModal()
-    }
+    } 
   }
 
   const onGovernClick = () => {
@@ -81,15 +72,9 @@ export function NavButtonRow({ mobile, disabled }: Props) {
     if (config.isElectron) {
       dispatch(txFlowReset())
       navigate('/governance')
-    } else {
-      showDownloadDesktopModal()
-    }
+    } 
   }
 
-  const onConnectClick = () => {
-    setShowDropdown(false)
-    showWalletConnectModal()
-  }
 
   const buttonWidth = mobile ? '44%' : '9.75em'
   const buttonHeight = mobile ? '2.75em' : '2.5em'
@@ -159,13 +144,6 @@ export function NavButtonRow({ mobile, disabled }: Props) {
               title="Govern"
               description="Vote for proposals"
               onClick={onGovernClick}
-            />
-            <MenuItem
-              icon={WalletConnectIcon}
-              title="Connect"
-              description="Use WalletConnect"
-              onClick={onConnectClick}
-              iconStyles={style.walletConnectIcon}
             />
           </div>
         )}

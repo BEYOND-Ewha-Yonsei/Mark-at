@@ -2,7 +2,6 @@ import { combineReducers } from '@reduxjs/toolkit'
 import { exchangeReducer } from 'src/features/exchange/exchangeSlice'
 import { persistedFeedReducer } from 'src/features/feed/feedSlice'
 import { feeReducer } from 'src/features/fees/feeSlice'
-import { governanceReducer } from 'src/features/governance/governanceSlice'
 import { lockReducer } from 'src/features/lock/lockSlice'
 import { persistLoginReducer } from 'src/features/login/loginSlice'
 import { persistedSettingsReducer } from 'src/features/settings/settingsSlice'
@@ -20,7 +19,6 @@ export const rootReducer = combineReducers({
   fees: feeReducer,
   tokenPrice: tokenPriceReducer,
   validators: persistedValidatorsReducer,
-  governance: governanceReducer,
   settings: persistedSettingsReducer,
   txFlow: txFlowReducer,
   saga: monitoredSagaReducers,

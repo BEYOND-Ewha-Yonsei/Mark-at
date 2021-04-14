@@ -1,5 +1,4 @@
 import { ExchangeTokenParams } from 'src/features/exchange/types'
-import { GovernanceVoteParams } from 'src/features/governance/types'
 import { LockTokenParams } from 'src/features/lock/types'
 import { SendTokenParams } from 'src/features/send/types'
 import { StakeTokenParams } from 'src/features/validators/types'
@@ -33,15 +32,8 @@ export interface StakeFlowTx {
   type: TxFlowType.Stake
   params: StakeTokenParams
 }
-
-export interface GovernanceFlowTx {
-  type: TxFlowType.Governance
-  params: GovernanceVoteParams
-}
-
 export type TxFlowTransaction =
   | SendFlowTx
   | ExchangeFlowTx
   | LockFlowTx
   | StakeFlowTx
-  | GovernanceFlowTx

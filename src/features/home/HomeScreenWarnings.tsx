@@ -9,10 +9,9 @@ import WarningIcon from 'src/components/icons/warning.svg'
 import { Notification } from 'src/components/Notification'
 import { config } from 'src/config'
 import { HIGH_VALUE_THRESHOLD } from 'src/consts'
-import { DownloadDesktopButton } from 'src/features/download/DownloadDesktopModal'
 import {
   setBackupReminderDismissed,
-  setHighValueWarningDismissed,
+  setHighValueWarningDismissed
 } from 'src/features/settings/settingsSlice'
 import { Color } from 'src/styles/Color'
 
@@ -84,7 +83,7 @@ function DownloadDesktopReminder() {
   return (
     <div>
       Warning: Using this wallet in a browser is not recommended for large accounts. Please download
-      the <DownloadDesktopButton>Desktop App</DownloadDesktopButton> or use Ledger hardware.
+      the Desktop App or use Ledger hardware.
     </div>
   )
 }

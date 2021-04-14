@@ -48,10 +48,10 @@ export function LoginForm() {
         else if(response.data.message == "0"){
           resetForm();
           alert("login fail!");}
-      })
+        })
       .catch(function (error) {
-        // 
-        // console.log(error);
+        
+        console.log(error);
       });
 
   };

@@ -1,14 +1,15 @@
+
 import { Carousel } from 'antd';
 import * as React from 'react';
 import { useNavigate } from 'react-router';
 import { HrDivider } from 'src/components/HrDivider';
 import period from 'src/components/icons/calendar.svg';
+import chevron_left from 'src/components/icons/chevron_left.svg';
 import hour from 'src/components/icons/clock.svg';
 import HeartIcon from 'src/components/icons/heart.svg';
 import location from 'src/components/icons/map-pin.svg';
 import website from 'src/components/icons/phone-call.svg';
 import { Box } from 'src/components/layout/Box';
-import { ScreenContentFrame } from 'src/components/layout/ScreenContentFrame';
 import { Stylesheet } from 'src/styles/types';
 
 export default function MarketInfo1() {
@@ -32,7 +33,10 @@ export default function MarketInfo1() {
     navigate(-1)
   }
     return (
-        <ScreenContentFrame onClose={onClickBack}>
+        <>
+          <button css={{ background:'white', position:'fixed', top:'1em', right:'4em'}} onClick={onClickBack}>
+            <img src={chevron_left} />
+          </button>
             <Carousel autoplay>
               <div style={style.pic}>
               <img style={style.pic} src={Store.mainpic}></img>
@@ -87,7 +91,7 @@ export default function MarketInfo1() {
                 </Box>
             </Box>
           </Box>
-          </ScreenContentFrame>
+        </>
     )
 }
 const style: Stylesheet = {

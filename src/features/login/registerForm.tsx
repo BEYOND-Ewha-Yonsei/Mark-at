@@ -19,20 +19,41 @@ export function RegisterForm() {
   const resetForm = () => {
     setForm({ id:"", pw:"",email:"", nickname:"" });
   };
-
+  const validCheck = () => {
+    if (form.id.length === 0 || form.pw.length === 0
+      ||form.email.length === 0||form.nickname.length === 0) {
+      alert("fill every section!");
+      console.log('validcheck');
+      return false;
+    }
+    return true;
+  };
+  const lengthCheck = () => {
+    if (form.id.length > 20){
+      alert("Please fill in 20 characters or less");
+      console.log('check');
+      return false;
+    }
+    return true;
+  };
   const handleSubmit = () => {
-    console.log(form);
-    //if (!validCheck) return;
+
+    if (!validCheck) return;
+    if (!lengthCheck) return;
     axios
       .post(`http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/server/create/`, form)
       .then(function (response) {
         console.log(response);
-        alert("Sign up success! Please login again");
-        navigate('/seller-login')
+        if (response.data.message == "1"){
+          alert("Sign up success! Please login again");
+          navigate('/seller-login')}
+        else if(response.data.message == "0"){
+          resetForm();
+          alert("already exist!");}
       })
       .catch(function (error) {
         resetForm();
-        alert("sign up fail!");
+        alert("Sign up fail!");
         console.log(error);
       });
   };
