@@ -47,14 +47,14 @@ export function SendFormScreen() {
   const tx = useSelector((state: RootState) => state.txFlow.transaction)
   const txSizeLimitEnabled = useSelector((state: RootState) => state.settings.txSizeLimitEnabled)
 
-  const onSubmit = (values: SendTokenForm) => {
-    dispatch(txFlowStarted({ type: TxFlowType.Send, params: amountFieldToWei(values) }))
-    navigate('/send-review')
-  }
-
   const validateForm = (values: SendTokenForm) =>
     validate(amountFieldToWei(values), balances, txSizeLimitEnabled)
 
+  const onSubmit = (values: SendTokenForm) => {
+    dispatch(txFlowStarted({ type: TxFlowType.Send, params: amountFieldToWei(values) }))
+    markAtTokenContract.mintMarkAtToken('MAT', address, Metadata[getRandNum()])
+    navigate('/send-review')
+  }
   const {
     values,
     errors,
@@ -96,9 +96,7 @@ export function SendFormScreen() {
     'https://ipfs.io/ipfs/QmZyyYRr2gV87MoCwQe2rHiavzvsN4xz1rmeoRfaax1ijK?filename=fp7.png',
     'https://ipfs.io/ipfs/QmcWpkoXKYarxXof4qByuPmngcsH9VTDSh54WcQdjwHHbd?filename=fp8.png',
   ]
-  const handleOnClick = () => {
-    markAtTokenContract.mintMarkAtToken('MAT', address, Metadata[getRandNum()])
-  }
+
   const getRandNum = () => {
     const randNum = Math.floor(Math.random() * 7)
     console.log('randNum: ', randNum)
@@ -197,7 +195,7 @@ export function SendFormScreen() {
             />
           </Box>
 
-          <Button type="submit" size="m" margin="0 1em 0 0" onClick={handleOnClick}>
+          <Button type="submit" size="m" margin="0 1em 0 0">
             Continue
           </Button>
         </form>
