@@ -19,62 +19,49 @@ export function NFTpage() {
   const test = getContract(CeloContract.MarkAtToken)
   const address = useWalletAddress()
   const [nfts, setNfts] = useState<string[]>([])
-  let testNfts: string[] = []
+  const [nfts_re, setNfts_re] = useState<string[]>([])
 
+  const staticNfts = [
+    'https://ipfs.io/ipfs/QmQxtsnSTtWhFN8cP3hg2jZaTcCBxNFK3gNg7zcFUWtrK7?filename=fp1.png',
+    'https://ipfs.io/ipfs/QmQPdMLW9Lu1ZEZT1sKF58zjtgt5ydeKiP4aW6LqM9rShB?filename=fp2.png',
+    'https://ipfs.io/ipfs/Qmdye38FXH1RgN1WFScqayD8S51Ndf97uCa7QChUuNa9EA?filename=fp3.png',
+    'https://ipfs.io/ipfs/QmRMBx8yPwdq1TpTXMdwYcfeXsMkNinFsRtJ3qQogizXWC?filename=fp4.png',
+    'https://ipfs.io/ipfs/QmdYMMKKWJP1D4AHiPe7wg9GXtqcttEQAiz1HiVSGAKWs2?filename=fp5.png',
+    'https://ipfs.io/ipfs/QmfBLyBYgcpXdrwNGKfzPMnaUidW8CizrvgignDfAoV1Gf?filename=fp6.png',
+    'https://ipfs.io/ipfs/QmZyyYRr2gV87MoCwQe2rHiavzvsN4xz1rmeoRfaax1ijK?filename=fp7.png',
+    'https://ipfs.io/ipfs/QmcWpkoXKYarxXof4qByuPmngcsH9VTDSh54WcQdjwHHbd?filename=fp8.png',
+  ]
+  let staticNfts_re = [
+    'https://ipfs.io/ipfs/QmQxtsnSTtWhFN8cP3hg2jZaTcCBxNFK3gNg7zcFUWtrK7?filename=fp1.png',
+    'https://ipfs.io/ipfs/QmQPdMLW9Lu1ZEZT1sKF58zjtgt5ydeKiP4aW6LqM9rShB?filename=fp2.png',
+    'https://ipfs.io/ipfs/Qmdye38FXH1RgN1WFScqayD8S51Ndf97uCa7QChUuNa9EA?filename=fp3.png',
+    'https://ipfs.io/ipfs/QmRMBx8yPwdq1TpTXMdwYcfeXsMkNinFsRtJ3qQogizXWC?filename=fp4.png',
+    'https://ipfs.io/ipfs/QmdYMMKKWJP1D4AHiPe7wg9GXtqcttEQAiz1HiVSGAKWs2?filename=fp5.png',
+    'https://ipfs.io/ipfs/QmfBLyBYgcpXdrwNGKfzPMnaUidW8CizrvgignDfAoV1Gf?filename=fp6.png',
+    'https://ipfs.io/ipfs/QmZyyYRr2gV87MoCwQe2rHiavzvsN4xz1rmeoRfaax1ijK?filename=fp7.png',
+    'https://ipfs.io/ipfs/QmcWpkoXKYarxXof4qByuPmngcsH9VTDSh54WcQdjwHHbd?filename=fp8.png',
+  ]
   useEffect(() => {
-    // console.log('before fetch: ', nfts)
-    // async function fetch() {
-    //   let tempnfts: string[] = []
-
-    //   await getBalance().then(function (data: any) {
-    //     const balance = parseInt(data._hex, 16)
-    //     console.log('balance: ', balance)
-
-    //     for (let i = 0; i < balance; i++) {
-    //       getData(i)
-    //         .then(function (data: any) {
-    //           tempnfts.push(data)
-    //         })
-    //         .catch(function (err: any) {
-    //           console.log(err)
-    //         })
-    //     }
-    //     console.log('최종: ', tempnfts)
-    //   })
-    //   setNfts(tempnfts)
-    // }
-    // fetch()
-
-    const staticNfts = [
-      'https://ipfs.io/ipfs/QmQxtsnSTtWhFN8cP3hg2jZaTcCBxNFK3gNg7zcFUWtrK7?filename=fp1.png',
-      'https://ipfs.io/ipfs/QmQPdMLW9Lu1ZEZT1sKF58zjtgt5ydeKiP4aW6LqM9rShB?filename=fp2.png',
-      'https://ipfs.io/ipfs/Qmdye38FXH1RgN1WFScqayD8S51Ndf97uCa7QChUuNa9EA?filename=fp3.png',
-      'https://ipfs.io/ipfs/QmRMBx8yPwdq1TpTXMdwYcfeXsMkNinFsRtJ3qQogizXWC?filename=fp4.png',
-      'https://ipfs.io/ipfs/QmdYMMKKWJP1D4AHiPe7wg9GXtqcttEQAiz1HiVSGAKWs2?filename=fp5.png',
-      'https://ipfs.io/ipfs/QmfBLyBYgcpXdrwNGKfzPMnaUidW8CizrvgignDfAoV1Gf?filename=fp6.png',
-      'https://ipfs.io/ipfs/QmZyyYRr2gV87MoCwQe2rHiavzvsN4xz1rmeoRfaax1ijK?filename=fp7.png',
-      'https://ipfs.io/ipfs/QmcWpkoXKYarxXof4qByuPmngcsH9VTDSh54WcQdjwHHbd?filename=fp8.png',
-    ]
-
     async function showNfts() {
       await getBalance().then(function (data: any) {
         const balance = parseInt(data._hex, 16)
-        setNfts(staticNfts.splice(8 - balance))
+        console.log(balance)
+
+        const q = Math.floor(balance / 8)
+        const re = balance % 8
+
+        for (let i = 0; i < q; i++) {
+          setNfts(nfts.concat(staticNfts))
+        }
+        setNfts_re(nfts_re.concat(staticNfts_re.splice(0, re)))
       })
     }
     showNfts()
-    console.log(staticNfts)
+    console.log(nfts)
   }, [])
-  // console.log('after fetch: ', nfts)
-  // console.log('zero: ', nfts[0])
 
-  //  console.log(testNfts)
   function getBalance() {
     return test.balanceOf(address)
-  }
-
-  function getData(index: number) {
-    return test.tokenURI(index)
   }
 
   return (
@@ -92,11 +79,11 @@ export function NFTpage() {
             <img src={nft} css={style.nfts} width="100%" />
           </div>
         ))}
-        {/* {staticNfts.map((nft, index) => (
+        {nfts_re.map((nft, index) => (
           <div key={index} css={style.nftContainer}>
-            <img src={nft} />
+            <img src={nft} css={style.nfts} width="100%" />
           </div>
-        ))} */}
+        ))}
       </Box>
     </Box>
   )
