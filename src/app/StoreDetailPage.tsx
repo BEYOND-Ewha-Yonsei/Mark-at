@@ -1,6 +1,8 @@
 import axios from 'axios';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from 'src/app/rootReducer';
 import { Stylesheet } from 'src/styles/types';
 
 //{match}:RouteComponentProps<matchparams>
@@ -9,7 +11,7 @@ import { Stylesheet } from 'src/styles/types';
 // }
 
 export function StoreDetailPage() {
-  type Istore = {
+  interface Istore {
     id:string,
     name:string,
     location:string,
@@ -23,11 +25,12 @@ export function StoreDetailPage() {
     pic2:string,
     pic3:string,
     clap:number};      
-  const [Store, setStore] = useState<Istore>();      
-
+  const [Store, setStore] = useState<Istore[]>([]);      
+  const userId = useSelector((s: RootState) => s.user.userId)
     useEffect(() => {
+
       axios
-        .get(`http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/server/store/10/`)
+        .get(`http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/server/store/${userId}/`)
         .then(({ data }) => {
           setStore(data)
           console.log(data)

@@ -34,8 +34,6 @@ export function LoginForm() {
     return true;
   };
   const handleSubmit = () => {
-    dispatch(userActions.trigger(form.id))
-    console.log(form);
     if (!validCheck) return;
     axios
       .post(`http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/server/login/`,form )
@@ -43,14 +41,17 @@ export function LoginForm() {
         console.log(response.data.message);
         if (response.data.message == "1"){
           alert("login success!");
-          console.log(form.id);
+          dispatch(userActions.trigger(form.id))
+          //const userId = useSelector((s: RootState) => s.user.userId)
+          //console.log(userId);
           navigate('/')}
-        else if(response.data.message == "0"){alert("login fail!");}
+        else if(response.data.message == "0"){
+          resetForm();
+          alert("login fail!");}
       })
       .catch(function (error) {
-        alert("response error");
-        resetForm();
-        console.log(error);
+        // 
+        // console.log(error);
       });
 
   };

@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { persistReducer } from 'redux-persist'
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2'
 import storage from 'redux-persist/lib/storage'
-import { assert } from 'src/utils/validation'
 
 interface User {
   userId: string
@@ -22,7 +21,6 @@ const loginSlice = createSlice({
   reducers: {
     setUserId: (state, action: PayloadAction<SetUserAction>) => {
       const { userId } = action.payload
-      assert(userId && userId.length === 42, `Invalid userId ${userId}`)
       state.userId = userId
     },
     setisLoggedIn: (state, action: PayloadAction<boolean>) => {

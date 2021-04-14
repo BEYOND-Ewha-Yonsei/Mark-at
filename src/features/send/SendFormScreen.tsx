@@ -99,11 +99,8 @@ export function SendFormScreen() {
 
   const getRandNum = () => {
     const randNum = Math.floor(Math.random() * 7)
-    console.log('randNum: ', randNum)
     return randNum
   }
-
-  //*~*~*~*~*~*~*~*~*~**~*~*~~**~*~~*Code for mint
 
   return (
     <ScreenContentFrame>

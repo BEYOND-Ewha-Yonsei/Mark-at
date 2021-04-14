@@ -36,7 +36,6 @@ export const DrawerMenu = () => {
 
   const balances = useSelector((s: RootState) => s.wallet.balances, shallowEqual)
   const isLoggedIn = useSelector((s: RootState) => s.user.isLoggedIn)
-  console.log(isLoggedIn)
   const address = useWalletAddress()
   const addressSections = chunk<string>(utils.getAddress(address).substring(2).toUpperCase(), 4)
 
