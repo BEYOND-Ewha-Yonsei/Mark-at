@@ -22,14 +22,14 @@ export function MarketList() {
   const navigate = useNavigate()
 
   const onClick = (_storeId: any) => {
-    navigate('/store-detail/' + `${_storeId}`)
+    navigate('/store/' + `${_storeId}`)
   }
 
   const marketplace = 'Venice High Flea Market'
 
   const markets = [
     {
-      id: 17,
+      id: 1,
       name: 'groceryus',
       mainpic:
         'http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/%E1%84%85%E1%85%A9%E1%84%80%E1%85%A9_lLB4LZi.png',
@@ -37,7 +37,7 @@ export function MarketList() {
       clap: 91,
     },
     {
-      id: 19,
+      id: 2,
       name: 'Toymonster',
       mainpic:
         'http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/%E1%84%85%E1%85%A9%E1%84%80%E1%85%A9_MQkiPLa.png',
@@ -45,7 +45,7 @@ export function MarketList() {
       clap: 89,
     },
     {
-      id: 9,
+      id: 3,
       name: 'FloorChirp',
       mainpic:
         'http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/FloorChirp_1.jpg',
@@ -53,7 +53,7 @@ export function MarketList() {
       clap: 131,
     },
     {
-      id: 35,
+      id: 4,
       name: 'Dolls around the world',
       mainpic:
         'http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/%E1%84%80%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B71_XLRMGUY.jpg',
@@ -61,7 +61,7 @@ export function MarketList() {
       clap: 96,
     },
     {
-      id: 6,
+      id: 5,
       name: 'Oldies Trove Store',
       mainpic:
         'http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/Oldies_Trove_Store_2_XfhDDGN.jpg',
@@ -69,7 +69,7 @@ export function MarketList() {
       clap: 79,
     },
     {
-      id: 24,
+      id: 6,
       name: 'Eden&lawn',
       mainpic:
         'http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/%E1%84%85%E1%85%A9%E1%84%80%E1%85%A9_4GrbU6e.png',

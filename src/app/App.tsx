@@ -16,7 +16,8 @@ import MarketInfo1 from 'src/app/storePages/store1'
 import MarketInfo2 from 'src/app/storePages/store2'
 import MarketInfo3 from 'src/app/storePages/store3'
 import MarketInfo4 from 'src/app/storePages/store4'
-import { default as MarketInfo5, default as MarketInfo6 } from 'src/app/storePages/store5'
+import { default as MarketInfo5 } from 'src/app/storePages/store5'
+import MarketInfo6 from 'src/app/storePages/store6'
 import { UpdateBanner } from 'src/app/UpdateBanner'
 import Uploading from 'src/app/utils/Uploading'
 import { ModalProvider } from 'src/components/modal/modalContext'
@@ -42,8 +43,6 @@ import { SendFormScreen } from 'src/features/send/SendFormScreen'
 import { SettingsScreen } from 'src/features/settings/SettingsScreen'
 import { WalletScreenTest } from 'src/features/wallet/WalletScreenTest'
 import { useBrowserFeatureChecks } from 'src/utils/browsers'
-
-
 
 function Router(props: PropsWithChildren<any>) {
   // The BrowserRouter works everywhere except windows so using hash for electron
@@ -79,28 +78,27 @@ export const App = () => {
               <Route path="exchange" element={<ExchangeFormScreen />} />
               <Route path="wallet" element={<WalletScreenTest />} />
               <Route path="settings" element={<SettingsScreen />} />
-              
+
               <Route path="NFTpage" element={<NFTpage />} />
               <Route path="NFTpaint" element={<NFTpaint />} />
 
               <Route path="market-register" element={<MarketForm />} />
               <Route path="test" element={<Uploading />} />
 
-              <Route path="store/1" element={<MarketInfo1/>} />
-              <Route path="store/2" element={<MarketInfo2/>} />
-              <Route path="store/3" element={<MarketInfo3/>} />
-              <Route path="store/4" element={<MarketInfo4/>} />
-              <Route path="store/5" element={<MarketInfo5/>} />
-              <Route path="myMarket" element={<MarketInfo6/>} />
-              <Route path="store-detail/1" element ={<StoreDetailPage/>} /> 
-              <Route path="store" element={<StoreDetailPage/>} />
+              <Route path="store/1" element={<MarketInfo1 />} />
+              <Route path="store/2" element={<MarketInfo2 />} />
+              <Route path="store/3" element={<MarketInfo3 />} />
+              <Route path="store/4" element={<MarketInfo4 />} />
+              <Route path="store/5" element={<MarketInfo5 />} />
+              <Route path="myMarket" element={<MarketInfo6 />} />
+              <Route path="store-detail/1" element={<StoreDetailPage />} />
+              <Route path="store" element={<StoreDetailPage />} />
 
               <Route path="market-map" element={<MarketMap />} />
               <Route path="bigmarket/1" element={<MarketList />} />
               <Route path="seller-register" element={<RegisterScreen />} />
-              
-              <Route path="seller-login" element={<LoginForm/>}
-              />
+
+              <Route path="seller-login" element={<LoginForm />} />
             </Route>
 
             <Route path="/setup" element={<OnboardingNavigator />}>
@@ -113,11 +111,6 @@ export const App = () => {
             </Route>
 
             <Route path="change-pin" element={<ChangePincodeScreen />} />
-
-            {/* To faciliatate testing */}
-            {/* <Route path="/dev/home" element={<HomeScreen />} />
-            <Route path="/dev/modals" element={<ModalTestScreen />} />
-            <Route path="/dev/tools" element={<DevTools />} /> */}
 
             <Route path="*" element={<NotFoundScreen />} />
           </Routes>

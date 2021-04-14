@@ -25,12 +25,12 @@ export function MarketMap() {
 
   return (
     <Box direction="column" styles={style.formContent}>
-      <Box direction="column" align="center" margin="3em 1em 1em 0">
+      <Box direction="column" align="center" margin="1em 1.5em 1em 1.5em">
         <Input
           size="large"
           name="search"
           placeholder="Pick your market"
-          style={{ padding: '0 0.3em', border: 'none' }}
+          style={style.search}
           prefix={<SearchOutlined />}
         />
       </Box>
@@ -38,29 +38,28 @@ export function MarketMap() {
         <Box align="center" styles={style.marketCard}>
           <img src="../static/market1.jpg" style={style.marketPicture} />
           <div className="textBox" style={style.marketProfile}>
-            <h3 margin-bottom="0px">Venice High Flea Market</h3>
-            <h4 margin-top="0px">Venice Boulevard 13000, CA US</h4>
+            <h3 css={{ marginBottom: '0px' }}>Eleven Wood Flea Market</h3>
+            <h4>Venice Boulevard 1200, CA US</h4>
           </div>
         </Box>
         <Box align="center" styles={style.marketCard}>
-          <img src="../static/market1.jpg" style={style.marketPicture} />
+          <img
+            src="http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/SportSmith_Goods_3.jpg"
+            style={style.marketPicture}
+          />
           <div className="textBox" style={style.marketProfile}>
             <h3 margin-bottom="0px">Venice High Flea Market</h3>
             <h4 margin-top="0px">Venice Boulevard 13000, CA US</h4>
           </div>
         </Box>
         <Box align="center" styles={style.marketCard}>
-          <img src="../static/market1.jpg" style={style.marketPicture} />
+          <img
+            src="http://ec2-3-34-14-143.ap-northeast-2.compute.amazonaws.com:8000/media/images/Oldies_Trove_Store_2_XfhDDGN.jpg"
+            style={style.marketPicture}
+          />
           <div className="textBox" style={style.marketProfile}>
-            <h3 margin-bottom="0px">Venice High Flea Market</h3>
-            <h4 margin-top="0px">Venice Boulevard 13000, CA US</h4>
-          </div>
-        </Box>
-        <Box align="center" styles={style.marketCard}>
-          <img src="../static/market1.jpg" style={style.marketPicture} />
-          <div className="textBox" style={style.marketProfile}>
-            <h3 css={{ marginBottom: '0px' }}>Venice High Flea Market</h3>
-            <h4>Venice Boulevard 13000, CA US</h4>
+            <h3 margin-bottom="0px">Starway Flea Market</h3>
+            <h4 margin-top="0px">1223 Race St, Denver, CO 80206 United States</h4>
           </div>
         </Box>
       </Carousel>
@@ -98,11 +97,8 @@ const style: Stylesheet = {
     backgroundImage: `url("static/maps.jpg")`,
   },
   search: {
-    padding: '1em 1em',
-    width: '88vw',
-    height: '3.5em',
-    background: 'white',
-    borderRadius: 10,
+    padding: '0.5em 0.5em',
+    border: 'none',
     boxShadow: '0px 0px 10px #ccc',
   },
   marketCard: {
