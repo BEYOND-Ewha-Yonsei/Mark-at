@@ -34,7 +34,7 @@ export default function MarketInfo1() {
   }
     return (
         <>
-          <button css={{ background:'white', position:'fixed', top:'1em', right:'4em'}} onClick={onClickBack}>
+          <button css={{ background:'white', position:'fixed', border:'none',top:'1.2em', right:'4em'}} onClick={onClickBack}>
             <img src={chevron_left} />
           </button>
             <Carousel autoplay>
