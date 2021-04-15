@@ -1,5 +1,4 @@
 import { Currency } from 'src/currency'
-import { VoteValue } from 'src/features/governance/types'
 
 interface Transaction {
   type: TransactionType
@@ -120,11 +119,6 @@ export interface StakeTokenTx extends Transaction {
   groupAddress: string
 }
 
-export interface GovernanceVoteTx extends Transaction {
-  type: TransactionType.GovernanceVote
-  proposalId: string
-  vote: VoteValue
-}
 
 export interface OtherTx extends Transaction {
   type: TransactionType.Other
@@ -145,7 +139,6 @@ export type CeloTransaction =
   | EscrowTransaction
   | LockTokenTx
   | StakeTokenTx
-  | GovernanceVoteTx
   | OtherTx
 
 export type TokenTransfer = StableTokenTransferTx | CeloTokenTransferTx | CeloNativeTransferTx

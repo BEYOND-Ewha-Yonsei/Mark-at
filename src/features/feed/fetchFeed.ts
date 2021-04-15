@@ -6,7 +6,6 @@ import { CeloContract, config } from 'src/config'
 import { MAX_COMMENT_CHAR_LENGTH } from 'src/consts'
 import { Currency } from 'src/currency'
 import { addTransactions } from 'src/features/feed/feedSlice'
-import { OrderedVoteValue } from 'src/features/governance/types'
 import {
   CeloNativeTransferTx,
   CeloTokenApproveTx,
@@ -15,7 +14,6 @@ import {
   EscrowTransaction,
   EscrowTransferTx,
   EscrowWithdrawTx,
-  GovernanceVoteTx,
   LockTokenTx,
   OtherTx,
   StableTokenApproveTx,
@@ -24,7 +22,7 @@ import {
   TokenExchangeTx,
   TokenTransaction,
   TransactionMap,
-  TransactionType,
+  TransactionType
 } from 'src/features/types'
 import { fetchBalancesActions } from 'src/features/wallet/fetchBalances'
 import { areAddressesEqual } from 'src/utils/addresses'
@@ -284,9 +282,6 @@ function parseTransaction(
     return parseElectionTx(tx, abiInterfaces)
   }
 
-  if (areAddressesEqual(tx.to, config.contractAddresses[CeloContract.Governance])) {
-    return parseGovernanceTx(tx, abiInterfaces)
-  }
 
   if (tx.tokenTransfers && tx.tokenTransfers.length && !isTxInputEmpty(tx)) {
     return parseTxWithTokenTransfers(tx, address, abiInterfaces)
@@ -647,34 +642,6 @@ function parseElectionTx(tx: BlockscoutTx, abiInterfaces: AbiInterfaceMap): Stak
     return parseOtherTx(tx)
   } catch (error) {
     logger.error('Failed to parse eletion tx', error, tx)
-    return parseOtherTx(tx)
-  }
-}
-
-function parseGovernanceTx(
-  tx: BlockscoutTx,
-  abiInterfaces: AbiInterfaceMap
-): GovernanceVoteTx | OtherTx {
-  try {
-    const abiInterface = abiInterfaces[CeloContract.Governance]!
-    const txDescription = abiInterface.parseTransaction({ data: tx.input, value: tx.value })
-    const name = txDescription.name
-
-    if (name === 'vote') {
-      const voteValueIndex = BigNumber.from(txDescription.args.value).toNumber()
-      const voteValue = OrderedVoteValue[voteValueIndex]
-      return {
-        ...parseOtherTx(tx),
-        type: TransactionType.GovernanceVote,
-        proposalId: txDescription.args.proposalId,
-        vote: voteValue,
-      }
-    }
-
-    logger.warn(`Unsupported governance method: ${name}`)
-    return parseOtherTx(tx)
-  } catch (error) {
-    logger.error('Failed to parse governance tx', error, tx)
     return parseOtherTx(tx)
   }
 }

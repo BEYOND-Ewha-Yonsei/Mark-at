@@ -2,7 +2,6 @@ import { Button } from 'src/components/buttons/Button'
 import { TextLink } from 'src/components/buttons/TextLink'
 import WarningIcon from 'src/components/icons/warning.svg'
 import { Box } from 'src/components/layout/Box'
-import { DownloadDesktopButton } from 'src/features/download/DownloadDesktopModal'
 import { Color } from 'src/styles/Color'
 import { Font } from 'src/styles/fonts'
 import { mq } from 'src/styles/mediaQueries'
@@ -28,7 +27,7 @@ export function WebWalletWarning({ type, onClose }: Props) {
           <img css={style.warningIcon} src={WarningIcon} alt="warning" />
         </Box>
         <p css={style.text}>
-          {caseText}, using <DownloadDesktopButton>the desktop app</DownloadDesktopButton> or Ledger
+          {caseText}, using the desktop app or Ledger
           hardware is strongly recommended.
         </p>
         <p css={style.text}>

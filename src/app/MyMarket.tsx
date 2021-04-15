@@ -30,7 +30,7 @@ export function MyMarket() {
     pic1:string|null,
     pic2:string|null,
     pic3:string|null,
-    clap:number|null};      
+    clap:number|null}   
   const [Store, setStore] = useState<Istore>({
     id:'',
     name:'',

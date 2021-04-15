@@ -38,7 +38,7 @@ Sellers can register their market regardless of their location or states. They c
 
 <img width="300" alt="list page" src="https://user-images.githubusercontent.com/56113089/114656060-5e395380-9d28-11eb-9d68-302804ecaa20.png">     <img width="300" alt="drawer_seller" src="https://user-images.githubusercontent.com/56113089/114656511-31d20700-9d29-11eb-9768-fb49d876e80b.png">     <img width="300" alt="market register " src="https://user-images.githubusercontent.com/56113089/114656031-59749f80-9d28-11eb-93d8-7c1335395cf0.png">
 
-(동영상)
+**Demo Video (Youtube Link) : https://youtu.be/Y8p9K3JC1q4**
 
 ### Built With
 

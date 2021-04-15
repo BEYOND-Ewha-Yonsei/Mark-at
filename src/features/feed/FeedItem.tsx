@@ -169,13 +169,6 @@ function getContentByTxType(tx: CeloTransaction): FeedItemContent {
     }
   }
 
-  if (tx.type === TransactionType.GovernanceVote) {
-    return {
-      ...defaultContent,
-      description: 'Governance Vote',
-    }
-  }
-
   return defaultContent
 }
 

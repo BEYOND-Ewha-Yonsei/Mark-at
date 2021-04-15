@@ -28,18 +28,6 @@ import {
   estimateFeeSagaName
 } from 'src/features/fees/estimateFee'
 import {
-  fetchProposalsActions,
-  fetchProposalsReducer,
-  fetchProposalsSaga,
-  fetchProposalsSagaName
-} from 'src/features/governance/fetchProposals'
-import {
-  governanceVoteActions,
-  governanceVoteReducer,
-  governanceVoteSaga,
-  governanceVoteSagaName
-} from 'src/features/governance/governanceVote'
-import {
   importLedgerWalletActions,
   importLedgerWalletReducer,
   importLedgerWalletSaga,
@@ -74,18 +62,6 @@ import {
   fetchTokenPriceSagaName
 } from 'src/features/tokenPrice/fetchPrices'
 import {
-  fetchValidatorsActions,
-  fetchValidatorsReducer,
-  fetchValidatorsSaga,
-  fetchValidatorsSagaName
-} from 'src/features/validators/fetchValidators'
-import {
-  stakeTokenActions,
-  stakeTokenReducer,
-  stakeTokenSaga,
-  stakeTokenSagaName
-} from 'src/features/validators/stakeToken'
-import {
   createWalletActions,
   createWalletReducer,
   createWalletSaga,
@@ -105,6 +81,7 @@ import {
   importWalletSagaName
 } from 'src/features/wallet/importWallet'
 import { SagaActions, SagaState } from 'src/utils/saga'
+
 function* init() {
   yield call(connectToProvider)
   yield call(importDefaultAccount)
@@ -176,26 +153,6 @@ export const monitoredSagas: {
     saga: lockTokenSaga,
     reducer: lockTokenReducer,
     actions: lockTokenActions,
-  },
-  [fetchValidatorsSagaName]: {
-    saga: fetchValidatorsSaga,
-    reducer: fetchValidatorsReducer,
-    actions: fetchValidatorsActions,
-  },
-  [stakeTokenSagaName]: {
-    saga: stakeTokenSaga,
-    reducer: stakeTokenReducer,
-    actions: stakeTokenActions,
-  },
-  [fetchProposalsSagaName]: {
-    saga: fetchProposalsSaga,
-    reducer: fetchProposalsReducer,
-    actions: fetchProposalsActions,
-  },
-  [governanceVoteSagaName]: {
-    saga: governanceVoteSaga,
-    reducer: governanceVoteReducer,
-    actions: governanceVoteActions,
   },
   [logoutSagaName]: {
     saga: logoutSaga,
